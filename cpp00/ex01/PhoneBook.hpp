@@ -13,6 +13,8 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
+#include <iostream>
+#include <string>
 #include "Contact.hpp"
 
 class PhoneBook
@@ -22,8 +24,8 @@ class PhoneBook
 
 	public:
 		PhoneBook();
-		void	addContact();
-		void	displayContact();
+		void	addContact(int index);
+		void	displayContact(int index);
 };
 
 #endif

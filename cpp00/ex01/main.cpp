@@ -13,12 +13,11 @@
 #include <iostream>
 #include "PhoneBook.hpp"
 
-int	main(void)
+int	main()
 {
 	std::string	input;
-	PhoneBook	phonebook;
+	PhoneBook	phoneBook;
 
-	(void)phonebook;
 	while (1)
 	{
 		std::cout << "Type ADD, SEARCH or EXIT" << std::endl;
@@ -27,11 +26,11 @@ int	main(void)
 			break;
 		else if (input == "ADD")
 		{
-			//add contact
+			phoneBook.addContact(0);
 		}
 		else if (input == "SEARCH")
 		{
-			//search
+			phoneBook.displayContact(0)
 		}
 		else
 			std::cout << "Invalid command" << std::endl;
