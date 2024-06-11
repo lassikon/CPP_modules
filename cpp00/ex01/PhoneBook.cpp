@@ -10,3 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
+#include "PhoneBook.hpp"
+
+void    addContact()
+{
+
+}
+
+void    displayContact()
+{
+    
+}
