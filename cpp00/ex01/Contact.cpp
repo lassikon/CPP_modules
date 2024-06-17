@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 11:06:46 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/06/06 11:06:49 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/06/17 13:55:44 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ Contact::Contact()
     this->nickname = "";
     this->phoneNumber = "";
     this->darkestSecret = "";
+    return ;
 }
 
 void	Contact::setFirstName(std::string firstName)
