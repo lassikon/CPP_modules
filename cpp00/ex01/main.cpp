@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:07:00 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/06/17 14:43:08 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:32:02 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ int	main()
 	PhoneBook	phoneBook;
 	int			index;
 
-	while (1)
+	while (true)
 	{
 		std::cout << "Type ADD, SEARCH or EXIT" << std::endl;
 		std::getline(std::cin, input);
-		if (input == "EXIT")
-			break;
+		if (std::cin.eof() || input == "EXIT")
+			break ;
 		else if (input == "ADD")
 			phoneBook.addContact();
 		else if (input == "SEARCH")
@@ -32,6 +32,8 @@ int	main()
 			if (phoneBook.displayAllContacts())
 			{
 				index = phoneBook.askForIndex();
+				if (index == EOF)
+					break ;
 				phoneBook.displayContact(index);
 			}
 		}
