@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:07:00 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/06/18 17:32:02 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:57:54 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main()
 	PhoneBook	phoneBook;
 	int			index;
 
+	std::cout << "Welcome to the phonebook!" << std::endl;
 	while (true)
 	{
 		std::cout << "Type ADD, SEARCH or EXIT" << std::endl;
@@ -39,6 +40,7 @@ int	main()
 		}
 		else
 			std::cout << "Error: Invalid command" << std::endl;
+		std::cout << std::endl;
 	}
 	return (0);
 }

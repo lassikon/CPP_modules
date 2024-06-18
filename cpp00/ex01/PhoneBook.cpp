@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 11:06:36 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/06/18 17:31:48 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/06/18 18:03:03 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int PhoneBook::displayAllContacts()
             << this->truncateString(this->contacts[i].getNickname()) << std::endl;
         i++;
     }
+    std::cout << std::endl;
     return (1);
 }
 
@@ -104,8 +105,9 @@ int	PhoneBook::askForIndex()
 
     while (true)
     {
-        std::cout << "Type index of the contact you want to display" << std::endl;
+        std::cout << "Type index of the contact you want to display: ";
         std::cin >> index;
+        // std::cin.clear();
         if (std::cin.eof())
             return (EOF);
         else if (std::cin.fail())
@@ -117,15 +119,25 @@ int	PhoneBook::askForIndex()
         else if (index < 0 || index >= this->contactCount)
             std::cout << "Error: No contact for this index!" << std::endl;
         else
+        {
+            std::cin.ignore(INT_MAX, '\n');
             return (index);
+        }
     }
 }
 
 void    PhoneBook::displayContact(int index)
 {
+    std::cout << std::endl;
+    std::cout << "Contact information" << std::endl;
+    std::cout << "First Name: ";
     std::cout << this->contacts[index].getFirstName() << std::endl;
+    std::cout << "Last Name: ";
     std::cout << this->contacts[index].getLastName() << std::endl;
+    std::cout << "Nickname: ";
     std::cout << this->contacts[index].getNickname() << std::endl;
+    std::cout << "Phone Number: ";
     std::cout << this->contacts[index].getPhoneNumber() << std::endl;
+    std::cout << "Darkest Secret: ";
     std::cout << this->contacts[index].getDarkestSecret() << std::endl;
 }
