@@ -1,27 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Replacer.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/15 16:17:11 by lkonttin          #+#    #+#             */
+/*   Created: 2024/07/17 10:47:58 by lkonttin          #+#    #+#             */
 /*   Updated: 2024/07/17 11:50:08 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Replacer.hpp"
 
-int main(int argc, char **argv)
+Replacer::Replacer(std::string filename, std::string s1,  std::string s2)
+    : filename(filename), s1(s1), s2(s2)
 {
-    if (argc != 4)
-    {
+    return ;
+}
+
+std::string Replacer::readFile()
+{
+    std::ifstream inFile(filename);
+    std::string content;
+
+    inFile >> content;
+    
+    return (content);
+}
+
+int Replacer::writeFile(std::string content)
+{
+    std::ofstream outFile(filename + ".replace");
+    if (!outFile)
         return (1);
-    }
-    else
-    {
-        Replacer replacer(argv[1], argv[2], argv[3]);
-        replacer.replace();
-    }
+    outFile << content;
+    return (0);
+}
+
+int Replacer::replace()
+{
+    std::string content = readFile();
+    if (content.empty())
+        return (1);
+    writeFile(content);
     return (0);
 }

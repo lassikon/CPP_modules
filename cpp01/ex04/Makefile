@@ -1,8 +1,9 @@
-NAME	:= sed
+NAME	:= replacer
 CC		:= c++
 FLAGS	:= -Wall -Wextra -Werror
 
 SRC		:=	main.cpp \
+			Replacer.cpp
 			
 
 OBJ		:= $(SRC:.cpp=.o)
