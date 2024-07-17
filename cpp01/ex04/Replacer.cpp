@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 10:47:58 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/17 12:14:55 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/17 13:12:57 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ std::string Replacer::readFile()
         return ("");
     }
     inFile >> content;
+    if (content.empty())
+    {
+        printError("Failed to read the file, or file is empty");
+        return ("");
+    }
     return (content);
 }
 
