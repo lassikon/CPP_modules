@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 10:47:58 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/17 13:59:12 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/17 14:01:26 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int Replacer::replace()
     std::string content = readFile();
     if (content.empty())
         return (1);
-    std::cout << "content: " << content << std::endl; //TESTING
     std::string newContent;
     size_t      pos = 0;
     size_t      foundPos;
@@ -71,7 +70,6 @@ int Replacer::replace()
         pos = foundPos + s1.length();
     }
     newContent.append(content, pos, std::string::npos);
-    std::cout << "newContent: " << newContent << std::endl; //TESTING
     if (writeFile(newContent))
         return (1);
     return (0);
