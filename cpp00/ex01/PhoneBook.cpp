@@ -6,10 +6,14 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 11:06:36 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/06/18 18:03:03 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/19 11:53:33 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include <climits>
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook()
@@ -39,35 +43,85 @@ int PhoneBook::getFreeIndex()
     return (i);
 }
 
-void    PhoneBook::addContact()
+int PhoneBook::addContactField(int index, int field)
 {
     std::string input;
-    int         index;
 
-    index = this->getFreeIndex();
+    switch (field)
+    {
+        case 0:
+            std::cout << "First Name: ";
+            std::getline(std::cin, input);
+            if (std::cin.eof())
+                return (EOF);
+            else if (input == "")
+                return (1);
+            else
+                this->contacts[index].setFirstName(input);
+            break ;
+        case 1:
+            std::cout << "Last Name: ";
+            std::getline(std::cin, input);
+            if (std::cin.eof())
+                return (EOF);
+            else if (input == "")
+                return (1);
+            else
+                this->contacts[index].setLastName(input);
+            break ;
+        case 2:
+            std::cout << "Nickname: ";
+            std::getline(std::cin, input);
+             if (std::cin.eof())
+                return (EOF);
+            else if (input == "")
+                return (1);
+            else
+                this->contacts[index].setNickname(input);
+            break ;
+        case 3:
+            std::cout << "Phone Number: ";
+            std::getline(std::cin, input);
+             if (std::cin.eof())
+                return (EOF);
+            else if (input == "")
+                return (1);
+            else
+                this->contacts[index].setPhoneNumber(input);
+            break ;
+        case 4:
+            std::cout << "Darkest Secret: ";
+            std::getline(std::cin, input);
+             if (std::cin.eof())
+                return (EOF);
+            else if (input == "")
+                return (1);
+            else
+                this->contacts[index].setDarkestSecret(input);
+            break ;
+    }
+    return (0);
+}
 
-    std::cout << "First Name: ";
-    std::getline(std::cin, input);
-    this->contacts[index].setFirstName(input);
+int PhoneBook::addContact()
+{
+    int index = this->getFreeIndex();
+    int field = 0;
+    int status;
 
-    std::cout << "Last Name: ";
-    std::getline(std::cin, input);
-    this->contacts[index].setLastName(input);
-
-    std::cout << "Nickname: ";
-    std::getline(std::cin, input);
-    this->contacts[index].setNickname(input);
-
-    std::cout << "Phone Number: ";
-    std::getline(std::cin, input);
-    this->contacts[index].setPhoneNumber(input);
-
-    std::cout << "Darkest Secret: ";
-    std::getline(std::cin, input);
-    this->contacts[index].setDarkestSecret(input);
-
+    while (field < 5)
+    {
+        status = addContactField(index, field);
+        if (status == EOF)
+            return (1);
+        else if (status == 1)
+            continue ;
+        else
+            field++;
+    }
     if (this->contactCount < 8)
         this->contactCount++;
+    return (0);
 }
 
 int PhoneBook::displayAllContacts()
@@ -77,7 +131,7 @@ int PhoneBook::displayAllContacts()
     if (this->contactCount == 0)
     {
         std::cout << "No contacts" << std::endl;
-        return (0);
+        return (1);
     }
     std::cout << std::setw(10) << "Index" << "|";
     std::cout << std::setw(10) << "First Name" << "|";
@@ -96,7 +150,7 @@ int PhoneBook::displayAllContacts()
         i++;
     }
     std::cout << std::endl;
-    return (1);
+    return (0);
 }
 
 int	PhoneBook::askForIndex()
@@ -107,7 +161,6 @@ int	PhoneBook::askForIndex()
     {
         std::cout << "Type index of the contact you want to display: ";
         std::cin >> index;
-        // std::cin.clear();
         if (std::cin.eof())
             return (EOF);
         else if (std::cin.fail())

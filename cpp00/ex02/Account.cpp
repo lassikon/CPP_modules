@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 10:56:16 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/06/27 11:57:34 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/19 11:07:05 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,14 @@ void	Account::displayStatus( void ) const
 
 void	Account::_displayTimestamp( void )
 {
-	std::time_t	time = std::time(nullptr);
+	std::time_t	time = std::time(NULL);
 	std::tm		*localTime = std::localtime(&time);
 
-	std::cout << "[" << std::put_time(localTime, "%Y%m%d_%H%M%S") << "] ";
+	std::cout << "[" << (localTime->tm_year + 1900)
+              << std::setfill('0') << std::setw(2) << (localTime->tm_mon + 1)
+              << std::setw(2) << localTime->tm_mday << "_"
+              << std::setw(2) << localTime->tm_hour
+              << std::setw(2) << localTime->tm_min
+              << std::setw(2) << localTime->tm_sec
+              << "] ";
 }

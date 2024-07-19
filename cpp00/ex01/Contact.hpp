@@ -6,14 +6,13 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 11:06:44 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/06/11 12:36:51 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/19 09:59:10 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
 
-# include <iostream>
 # include <string>
 
 class Contact

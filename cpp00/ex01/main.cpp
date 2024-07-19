@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:07:00 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/06/18 17:57:54 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/19 10:18:26 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,13 @@ int	main()
 		if (std::cin.eof() || input == "EXIT")
 			break ;
 		else if (input == "ADD")
-			phoneBook.addContact();
+		{
+			if (phoneBook.addContact())
+				break ;
+		}
 		else if (input == "SEARCH")
 		{
-			if (phoneBook.displayAllContacts())
+			if (!phoneBook.displayAllContacts())
 			{
 				index = phoneBook.askForIndex();
 				if (index == EOF)

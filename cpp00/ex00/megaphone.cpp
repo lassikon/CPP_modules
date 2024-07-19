@@ -6,11 +6,12 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 10:41:17 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/06/06 10:56:21 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/19 10:38:51 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <cctype>
 
 int	main(int argc, char **argv)
 {
@@ -25,7 +26,7 @@ int	main(int argc, char **argv)
 			k = 0;
 			while (argv[i][k])
 			{
-				std::cout << (char)toupper(argv[i][k]);
+				std::cout << (char)std::toupper(argv[i][k]);
 				k++;
 			}
 			i++;
