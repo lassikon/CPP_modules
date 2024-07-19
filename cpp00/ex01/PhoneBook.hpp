@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 11:06:41 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/19 11:53:35 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/19 14:31:19 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class PhoneBook
 		int			contactCount;
 		int			oldestIndex;
 		int			getFreeIndex();
-		int			addContactField(int index, int field);
+		void		promptContactField(int field);
 		std::string	truncateString(std::string str);
 
 	public:

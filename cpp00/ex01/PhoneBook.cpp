@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 11:06:36 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/19 11:53:33 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/19 14:42:42 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,81 +43,48 @@ int PhoneBook::getFreeIndex()
     return (i);
 }
 
-int PhoneBook::addContactField(int index, int field)
+void    PhoneBook::promptContactField(int field)
 {
-    std::string input;
-
     switch (field)
     {
         case 0:
             std::cout << "First Name: ";
-            std::getline(std::cin, input);
-            if (std::cin.eof())
-                return (EOF);
-            else if (input == "")
-                return (1);
-            else
-                this->contacts[index].setFirstName(input);
             break ;
         case 1:
             std::cout << "Last Name: ";
-            std::getline(std::cin, input);
-            if (std::cin.eof())
-                return (EOF);
-            else if (input == "")
-                return (1);
-            else
-                this->contacts[index].setLastName(input);
             break ;
         case 2:
             std::cout << "Nickname: ";
-            std::getline(std::cin, input);
-             if (std::cin.eof())
-                return (EOF);
-            else if (input == "")
-                return (1);
-            else
-                this->contacts[index].setNickname(input);
             break ;
         case 3:
             std::cout << "Phone Number: ";
-            std::getline(std::cin, input);
-             if (std::cin.eof())
-                return (EOF);
-            else if (input == "")
-                return (1);
-            else
-                this->contacts[index].setPhoneNumber(input);
             break ;
         case 4:
             std::cout << "Darkest Secret: ";
-            std::getline(std::cin, input);
-             if (std::cin.eof())
-                return (EOF);
-            else if (input == "")
-                return (1);
-            else
-                this->contacts[index].setDarkestSecret(input);
             break ;
     }
-    return (0);
 }
 
 int PhoneBook::addContact()
 {
-    int index = this->getFreeIndex();
-    int field = 0;
-    int status;
+    std::string input;
+    int         index = this->getFreeIndex();
+    int         field = 0;
 
     while (field < 5)
     {
-        status = addContactField(index, field);
-        if (status == EOF)
-            return (1);
-        else if (status == 1)
+        promptContactField(field);
+        std::getline(std::cin, input);
+        if (std::cin.eof())
+            return (EOF);
+        else if (input == "")
+        {
+            std::cout << "A contact can't have empty fields!" << std::endl;
             continue ;
+        }
         else
-            field++;
+            this->contacts[index].setContactField(input, field);
+        field++;
     }
     if (this->contactCount < 8)
         this->contactCount++;
@@ -142,11 +109,11 @@ int PhoneBook::displayAllContacts()
     {
         std::cout << std::setw(10) << i << "|";
         std::cout << std::setw(10)
-            << this->truncateString(this->contacts[i].getFirstName()) << "|";
+            << this->truncateString(this->contacts[i].getContactField(0)) << "|";
         std::cout << std::setw(10)
-            << this->truncateString(this->contacts[i].getLastName()) << "|";
+            << this->truncateString(this->contacts[i].getContactField(1)) << "|";
         std::cout << std::setw(10)
-            << this->truncateString(this->contacts[i].getNickname()) << std::endl;
+            << this->truncateString(this->contacts[i].getContactField(2)) << std::endl;
         i++;
     }
     std::cout << std::endl;
@@ -183,14 +150,9 @@ void    PhoneBook::displayContact(int index)
 {
     std::cout << std::endl;
     std::cout << "Contact information" << std::endl;
-    std::cout << "First Name: ";
-    std::cout << this->contacts[index].getFirstName() << std::endl;
-    std::cout << "Last Name: ";
-    std::cout << this->contacts[index].getLastName() << std::endl;
-    std::cout << "Nickname: ";
-    std::cout << this->contacts[index].getNickname() << std::endl;
-    std::cout << "Phone Number: ";
-    std::cout << this->contacts[index].getPhoneNumber() << std::endl;
-    std::cout << "Darkest Secret: ";
-    std::cout << this->contacts[index].getDarkestSecret() << std::endl;
+    for (int i = 0; i < 5; ++i)
+    {
+        promptContactField(i);
+        std::cout << this->contacts[index].getContactField(i) << std::endl;
+    }
 }
