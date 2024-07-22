@@ -6,11 +6,10 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 11:06:46 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/19 14:36:17 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/22 11:40:12 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "Contact.hpp"
 
 Contact::Contact()
@@ -63,4 +62,3 @@ std::string Contact::getContactField(int field)
             return ("");
     }
 }
-
