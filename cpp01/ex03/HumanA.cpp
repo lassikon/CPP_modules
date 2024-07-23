@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 16:07:41 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/15 16:13:17 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/23 12:10:19 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ HumanA::~HumanA()
 	return ;
 }
 
-void HumanA::attack(void)
+void HumanA::attack(void) const
 {
 	std::cout << this->name << " attacks with their " << this->weapon.getType() << std::endl;
 }

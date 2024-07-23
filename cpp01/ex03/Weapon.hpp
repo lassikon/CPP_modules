@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 16:03:28 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/15 16:06:26 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/23 12:06:03 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Weapon
 		Weapon(std::string type);
 		Weapon() = default;
 		~Weapon();
-		const std::string& getType(void);
+		const std::string& getType(void) const;
 		void setType(std::string type);
 };
 

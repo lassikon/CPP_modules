@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 16:08:21 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/15 16:10:05 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/23 12:14:27 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class HumanB
 	public:
 		HumanB(std::string name);
 		~HumanB();
-		void attack(void);
+		void attack(void) const;
 		void setWeapon(Weapon& weapon);
 };
 

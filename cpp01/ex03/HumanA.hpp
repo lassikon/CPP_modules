@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 16:06:51 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/15 16:07:39 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/23 12:09:29 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class HumanA
 	public:
 		HumanA(std::string name, Weapon& weapon);
 		~HumanA();
-		void attack(void);
+		void attack(void) const;
 };
 
 #endif
