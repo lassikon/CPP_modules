@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:56:39 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/03 15:56:41 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:16:23 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Zombie
 		Zombie(std::string name);
 		Zombie() = default;
 		~Zombie();
-		void announce (void);
+		void announce(void) const;
 };
 
 #endif
