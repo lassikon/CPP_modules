@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 16:17:11 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/17 13:13:55 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/23 13:49:13 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int main(int argc, char **argv)
 {
     if (argc != 4)
     {
-        std::cerr << "Error: Wrong number of arguments" << std::endl;
-        std::cerr << "Usage: " << argv[0] << " <filename> <string1> <string2>" << std::endl;
+        std::cout << "Error: Wrong number of arguments" << std::endl;
+        std::cout << "Usage: " << argv[0] << " <filename> <string1> <string2>" << std::endl;
         return (1);
     }
     else

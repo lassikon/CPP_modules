@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:03:37 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/18 15:23:47 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/23 13:49:13 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 {
     if (argc != 2)
     {
-        std::cerr << "Error: Wrong number of arguments (expected 1)" << std::endl;
+        std::cout << "Error: Wrong number of arguments (expected 1)" << std::endl;
         return (1);
     }
 

@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 10:47:58 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/17 14:01:26 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/23 13:49:13 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Replacer::Replacer(std::string filename, std::string s1,  std::string s2)
 
 void    Replacer::printError(std::string message)
 {
-    std::cerr << "Error: " << message << std::endl;
+    std::cout << "Error: " << message << std::endl;
     return ;
 }
 
