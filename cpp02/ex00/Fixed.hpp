@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:00:08 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/22 15:22:22 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:03:34 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 class Fixed
 {
     private:
-        int                 _fixedPointValue;
+        int                 _value;
         static const int    _fractionalBits = 8; 
 
     public:

@@ -6,33 +6,39 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:00:11 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/22 15:52:22 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:03:34 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <iostream>
 
-Fixed::Fixed() : _fixedPointValue(0)
+// Default constructor
+Fixed::Fixed()
 {
+    this->setRawBits(0);
     std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& other) : _fixedPointValue(other._fixedPointValue)
+// Copy constructor
+Fixed::Fixed(const Fixed& other)
 {
+    this->setRawBits(other.getRawBits());
     std::cout << "Copy constructor called" << std::endl;
 }
 
+// Copy assignment operator
 Fixed& Fixed::operator=(const Fixed& other)
 {
     if (this != &other)
     {
-        _fixedPointValue = other._fixedPointValue;
+        this->setRawBits(other.getRawBits());
         std::cout << "Copy assignment operator called" << std::endl;
     }
     return *this;
 }
 
+//Destructor
 Fixed::~Fixed()
 {
     std::cout << "Destructor called" << std::endl;
@@ -40,10 +46,11 @@ Fixed::~Fixed()
 
 int     Fixed::getRawBits(void) const
 {
-    return (_fixedPointValue);
+    std::cout << "getRawBits member function called" << std::endl;
+    return (this->_value);
 }
 
 void    Fixed::setRawBits(int const raw)
 {
-    _fixedPointValue = raw;
+    this->_value = raw;
 }
