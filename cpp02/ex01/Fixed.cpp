@@ -6,33 +6,53 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:00:11 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/22 15:52:22 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:42:42 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-#include <iostream>
+#include <cmath>
 
-Fixed::Fixed() : _fixedPointValue(0)
+// Default constructor
+Fixed::Fixed()
 {
+    this->setRawBits(0);
     std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed& other) : _fixedPointValue(other._fixedPointValue)
+// Int constructor
+Fixed::Fixed(const int value)
 {
+    this->setRawBits(value << this->_fractionalBits);
+    std::cout << "Int constructor called" << std::endl;
+}
+
+// Float constructor
+Fixed::Fixed(const float value)
+{
+    this->setRawBits(static_cast<int>(roundf(value * 256.0)));
+    std::cout << "Float constructor called" << std::endl;
+}
+
+// Copy constructor
+Fixed::Fixed(const Fixed& other)
+{
+    this->setRawBits(other.getRawBits());
     std::cout << "Copy constructor called" << std::endl;
 }
 
+// Copy assignment operator
 Fixed& Fixed::operator=(const Fixed& other)
 {
     if (this != &other)
     {
-        _fixedPointValue = other._fixedPointValue;
+        this->setRawBits(other.getRawBits());
         std::cout << "Copy assignment operator called" << std::endl;
     }
     return *this;
 }
 
+//Destructor
 Fixed::~Fixed()
 {
     std::cout << "Destructor called" << std::endl;
@@ -40,10 +60,25 @@ Fixed::~Fixed()
 
 int     Fixed::getRawBits(void) const
 {
-    return (_fixedPointValue);
+    return (this->_value);
 }
 
 void    Fixed::setRawBits(int const raw)
 {
-    _fixedPointValue = raw;
+    this->_value = raw;
+}
+
+float   Fixed::toFloat(void) const
+{
+    return (static_cast<float>(this->getRawBits()) / 256.0);
+}
+
+int     Fixed::toInt(void) const
+{
+    return (this->getRawBits() >> this->_fractionalBits);
+}
+
+std::ostream& operator<<(std::ostream &os, const Fixed &fixed)
+{
+    return (os << fixed.toFloat());
 }
