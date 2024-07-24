@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:00:11 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/24 12:11:36 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:42:59 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,3 +135,42 @@ Fixed   Fixed::operator/(const Fixed& other) const
 }
 
 // Increment/decrement operators
+
+// Pre-increment
+Fixed&  Fixed::operator++(void)
+{
+    ++_value;
+    return (*this);
+}
+
+// Post-increment
+Fixed  Fixed::operator++(int)
+{
+    Fixed   temp = *this;
+    ++_value;
+    return (temp);
+}
+
+// Pre-decrement
+Fixed&  Fixed::operator--(void)
+{
+    --_value;
+    return (*this);
+}
+
+// Post-decrement
+Fixed  Fixed::operator--(int)
+{
+    Fixed   temp = *this;
+    --_value;
+    return (temp);
+}
+
+// Overloaded min/max functions
+Fixed&   Fixed::min(Fixed& a, Fixed& b)
+{
+
+}
+const Fixed& min(const Fixed& a, const Fixed& b);
+Fixed&       max(Fixed& a, Fixed& b);
+const Fixed& max(const Fixed& a, const Fixed& b);
