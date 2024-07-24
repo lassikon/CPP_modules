@@ -12,7 +12,7 @@ OBJ		:= $(SRC:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(OBJ)
+	$(CC) $(FLAGS) -o $(NAME) $(OBJ)
 
 %.o: %.cpp
 	$(CC) $(FLAGS) -c $<
