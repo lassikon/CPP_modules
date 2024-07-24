@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 10:47:58 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/23 13:49:13 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:47:48 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ int Replacer::writeFile(std::string content)
 
 int Replacer::replace()
 {
+    if (s1 == "")
+    {
+        printError("string1 cannot be empty");
+        return (1);
+    }
     std::string content = readFile();
     if (content.empty())
         return (1);

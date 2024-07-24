@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 10:48:10 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/17 13:59:12 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:48:19 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ class Replacer
 
     public:
         Replacer(std::string filename, std::string s1,  std::string s2);
-        //~Replacer();
         int replace();
 };
 
