@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 16:09:37 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/23 12:14:27 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:28:52 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ HumanB::~HumanB()
 
 void HumanB::attack(void) const
 {
-	std::cout << this->name << " attacks with their " << this->weapon->getType() << std::endl;
+	if (this->weapon && !this->weapon->getType().empty())
+		std::cout << this->name << " attacks with their " << this->weapon->getType() << std::endl;
+	else
+		std::cout << this->name << " does not have a weapon" << std::endl;
 }
 
 void HumanB::setWeapon(Weapon& weapon)
