@@ -6,11 +6,14 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 15:24:32 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/23 11:08:06 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:40:56 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+
+Zombie*	newZombie(std::string name);
+void 	randomChump(std::string name);
 
 int main(void)
 {
