@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 16:09:37 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/24 15:28:52 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:51:29 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 HumanB::HumanB(std::string name) : name(name)
 {
+	this->weapon = nullptr;
 	return ;
 }
 
