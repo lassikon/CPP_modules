@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 11:32:25 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/26 12:09:17 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/26 12:34:57 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ static float	area(Point const a, Point const b, Point const c)
 {
 	Fixed	area = (a.getX() * (b.getY() - c.getY()) + b.getX() \
                 * (c.getY() - a.getY()) + c.getX() * (a.getY() - b.getY())) / 2;
-	return (std::abs(area.toFloat()));
+	if (area < 0)
+		return (area.toFloat() * -1);
+	else
+		return (area.toFloat());
 }
 
 bool	bsp(Point const a, Point const b, Point const c, Point const point)
@@ -30,7 +33,11 @@ bool	bsp(Point const a, Point const b, Point const c, Point const point)
 	if (area1 == 0.0f || area2 == 0.0f || area3 == 0.0f)
 		return (false);
 
-	if (std::abs(totalArea - (area1 + area2 + area3)) < 0.01)
+	float	result = totalArea - (area1 + area2 + area3);
+	if (result < 0)
+		result *= -1;
+
+	if (result < 0.01)
 		return (true);
 	else
 		return (false);

@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:00:11 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/26 11:45:08 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/26 12:17:42 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ Fixed::Fixed(const int value)
 // Float constructor
 Fixed::Fixed(const float value)
 {
-    this->setRawBits(static_cast<int>(roundf(value * 256.0)));
+    this->setRawBits(static_cast<int>(roundf(value * (1 << this->_fractionalBits))));
     // std::cout << "Float constructor called" << std::endl;
 }
 
