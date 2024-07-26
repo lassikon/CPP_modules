@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 14:15:33 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/25 11:25:43 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/26 11:48:18 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ int main(void)
 	std::cout << n1 << " - " << n2 << " = "<< n1 - n2 << std::endl;
 	std::cout << n1 << " / " << n2 << " = "<< n1 / n2 << std::endl;
 	std::cout << n1 << " * " << n2 << " = "<< n1 * n2 << std::endl;
+	n2 = Fixed(-0.3f);
+	std::cout << n1 << " / " << n2 << " = "<< n1 / n2 << std::endl;
     n2 = Fixed(0.0f);
     std::cout << "Division by zero" << std::endl;
     std::cout << n1 << " / " << n2 << " = "<< n1 / n2 << std::endl;
