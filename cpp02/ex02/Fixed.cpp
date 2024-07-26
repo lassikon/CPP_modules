@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:00:11 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/25 11:29:31 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/26 11:45:08 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,20 +134,24 @@ Fixed   Fixed::operator-(const Fixed& other) const
 Fixed   Fixed::operator*(const Fixed& other) const
 {
     Fixed   newNumber;
+    long long   longValue = static_cast<long long>(this->_value);
+    long long   otherLongValue = static_cast<long long>(other._value);
 
-    newNumber._value = (this->_value * other._value) >> this->_fractionalBits;
+    newNumber._value = static_cast<int>(longValue * otherLongValue) >> this->_fractionalBits;
     return (newNumber);
 }
+
 Fixed   Fixed::operator/(const Fixed& other) const
 {
-    Fixed   newNumber;
-
     if (other._value == 0)
     {
         std::cout << "Cannot divide by ";
         return (0);
     }
-    newNumber._value = this->_value << this->_fractionalBits / other._value;
+    Fixed   newNumber;
+    long long   longValue = static_cast<long long>(this->_value);
+
+    newNumber._value = static_cast<int>((longValue << this->_fractionalBits) / other._value);
     return (newNumber);
 }
 
