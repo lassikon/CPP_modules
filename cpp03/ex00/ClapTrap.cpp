@@ -6,12 +6,11 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:14:44 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/26 17:45:36 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/27 12:17:15 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
-#include <iostream>
 
 ClapTrap::ClapTrap() :  _name("NoName"), _hitPoints(10),
                     _energyPoints(10), _attackDamage(0)
@@ -44,26 +43,53 @@ ClapTrap&  ClapTrap::operator=(const ClapTrap& other)
 
 void    ClapTrap::attack(const std::string& target)
 {
-
+    if (_hitPoints < 1)
+        std::cout << "Claptrap " << _name << " can't attack because it's dead";
+    else if (_energyPoints > 0)
+    {
+        std::cout << "Claptrap " << _name << " attacks " << target
+            << ", causing " << _attackDamage << " points of damage";
+    }
+    else
+    {
+        std::cout << "Claptrap " << _name
+            << " doesn't have enough energy to attack " << target;
+    }
+    std::cout << std::endl;
 }
 void    ClapTrap::takeDamage(unsigned int amount)
 {
-    this->_hitPoints -= amount;
     std::cout << "ClapTrap " << _name << " takes "
-            << amount << " points of damage!" << std::endl;
+            << amount << " points of damage";
+    if (amount <= _hitPoints)
+        _hitPoints -= amount;
+    else if (_hitPoints == 0)
+        std::cout << ", but it was already dead anyway";
+    else
+    {
+        std::cout << " and is dead";
+        _hitPoints = 0;
+    }
+    std::cout << std::endl;
 }
 void    ClapTrap::beRepaired(unsigned int amount)
 {
-    if (_energyPoints > 0)
+    if (_hitPoints < 1)
     {
+        std::cout << "ClapTrap " << _name
+            << " can't repair itself because it's dead";
+    }
+    else if (_energyPoints > 0)
+    {
+        std::cout << "ClapTrap " << _name << " gained " << amount
+                << " hit points from repairing itself";
         _hitPoints += amount;
         _energyPoints--;
-        std::cout << "ClapTrap " << _name << " gained " << amount
-                << "hit points from repairing itself" << std::endl;
     }
     else
     {
         std::cout << "ClapTrap " << _name
-                << " doesn't have enough energy to repair itself" << std::endl;
+                << " doesn't have enough energy to repair itself";
     }
+    std::cout << std::endl;
 }

@@ -6,19 +6,20 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:14:26 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/26 17:20:21 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/27 12:16:23 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string>
+#include <iostream>
 
 class ClapTrap
 {
     private:
-        std::string _name;
-        int         _hitPoints;
-        int         _energyPoints;
-        int         _attackDamage;
+        std::string     _name;
+        unsigned int    _hitPoints;
+        unsigned int    _energyPoints;
+        unsigned int    _attackDamage;
     
     public:
         ClapTrap();
