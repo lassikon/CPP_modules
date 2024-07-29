@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:14:44 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/29 19:24:21 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/29 19:35:05 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,19 @@
 ClapTrap::ClapTrap() :  _name("NoName"), _hitPoints(10),
                     _energyPoints(10), _attackDamage(0)
 {
-    std::cout << "Default constructor called" << std::endl;
+    std::cout << "ClapTrap default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) :  _name(name), _hitPoints(10),
                      _energyPoints(10), _attackDamage(0)
 {
     std::cout << "ClapTrap " << _name << " has been created" << std::endl;
+}
+ClapTrap::ClapTrap(const ClapTrap& other) : _name(other._name),
+     _hitPoints(other._hitPoints), _energyPoints(other._energyPoints),
+     _attackDamage(other._attackDamage)
+{
+    std::cout << "ClapTrap " << _name << " copy constructor called" << std::endl;
 }
 
 ClapTrap::~ClapTrap()
