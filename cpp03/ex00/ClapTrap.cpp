@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:14:44 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/27 12:17:15 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/29 19:24:21 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void    ClapTrap::attack(const std::string& target)
     {
         std::cout << "Claptrap " << _name << " attacks " << target
             << ", causing " << _attackDamage << " points of damage";
+        _energyPoints--;
     }
     else
     {
@@ -61,15 +62,19 @@ void    ClapTrap::takeDamage(unsigned int amount)
 {
     std::cout << "ClapTrap " << _name << " takes "
             << amount << " points of damage";
-    if (amount <= _hitPoints)
-        _hitPoints -= amount;
-    else if (_hitPoints == 0)
-        std::cout << ", but it was already dead anyway";
-    else
+    if (_hitPoints > 0)
     {
-        std::cout << " and is dead";
-        _hitPoints = 0;
+        _hitPoints -= amount;
+        if (_hitPoints <= 0)
+        {
+            _hitPoints = 0;
+            std::cout << " and dies";
+        }
+        else
+            std::cout << " and has " << _hitPoints << " hp left";
     }
+    else
+        std::cout << ", but it was already dead anyway";
     std::cout << std::endl;
 }
 void    ClapTrap::beRepaired(unsigned int amount)
@@ -81,10 +86,10 @@ void    ClapTrap::beRepaired(unsigned int amount)
     }
     else if (_energyPoints > 0)
     {
-        std::cout << "ClapTrap " << _name << " gained " << amount
-                << " hit points from repairing itself";
         _hitPoints += amount;
         _energyPoints--;
+        std::cout << "ClapTrap " << _name << " repairs itself for " << amount
+                << " hp and has a total of " << _hitPoints << " hp";
     }
     else
     {
