@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 19:40:19 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/30 15:15:07 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:29:44 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ class ScavTrap : public ClapTrap
 		~ScavTrap();
 
 		ScavTrap&	operator=(const ScavTrap& other);
+
+		void        attack(const std::string& target);
+		void		guardGate();
 };
 
 #endif
