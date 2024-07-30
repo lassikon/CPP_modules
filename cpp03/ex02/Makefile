@@ -4,7 +4,8 @@ FLAGS	:= -Wall -Wextra -Werror
 
 SRC		:=	main.cpp \
 			ClapTrap.cpp \
-			ScavTrap.cpp
+			ScavTrap.cpp \
+			FragTrap.cpp
 
 OBJ		:= $(SRC:.cpp=.o)
 

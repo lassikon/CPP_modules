@@ -6,17 +6,17 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 12:12:34 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/30 15:34:19 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:49:28 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main(void)
 {
-	ScavTrap red("Red");
-	ScavTrap blue("Blue");
-	ScavTrap green("Green");
+	FragTrap red("Red");
+	FragTrap blue("Blue");
+	FragTrap green("Green");
 	std::cout << std::endl;
 
 	red.attack("Blue");
@@ -34,14 +34,14 @@ int main(void)
 	std::cout << std::endl;
 	
 	red.attack("Green");
-	green.takeDamage(10);
-	green.takeDamage(10);
+	green.takeDamage(200);
+	green.takeDamage(200);
 	green.beRepaired(5);
 	green.attack("Red");
 	std::cout << std::endl;
 
-	green.guardGate();
-	blue.guardGate();
+	green.highFivesGuys();
+	blue.highFivesGuys();
 	std::cout << std::endl;
 
 	return (0);
