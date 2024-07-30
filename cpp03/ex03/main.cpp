@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 12:12:34 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/30 16:51:09 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:56:39 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ int main(void)
 	blue.whoAmI();
 	std::cout << std::endl;
 
+	red.whoAmI();
 	red = green;
+	red.whoAmI();
+	red.highFivesGuys();
 	std::cout << std::endl;
 
 	return (0);

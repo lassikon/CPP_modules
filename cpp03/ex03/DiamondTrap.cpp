@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:02:10 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/30 16:50:54 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/30 16:57:52 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ DiamondTrap&	DiamondTrap::operator=(const DiamondTrap &other)
     if (this != &other)
     {
         ClapTrap::operator=(other);
-        // ScavTrap::operator=(other);
-        // FragTrap::operator=(other);
+		_name = other._name;
     }
     return (*this);
 }
