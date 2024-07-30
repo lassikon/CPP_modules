@@ -6,12 +6,13 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:14:26 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/30 15:13:48 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:36:09 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLAPTRAP_HPP
 # define CLAPTRAP_HPP
+
 # include <string>
 # include <iostream>
 
