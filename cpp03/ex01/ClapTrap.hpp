@@ -6,12 +6,14 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:14:26 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/29 19:43:56 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:14:40 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string>
-#include <iostream>
+#ifndef CLAPTRAP_HPP
+# define CLAPTRAP_HPP
+# include <string>
+# include <iostream>
 
 class ClapTrap
 {
@@ -33,3 +35,5 @@ class ClapTrap
         void        takeDamage(unsigned int amount);
         void        beRepaired(unsigned int amount);
 };
+
+#endif

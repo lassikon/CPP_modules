@@ -6,11 +6,13 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 19:40:19 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/29 19:47:49 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:15:07 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
+# include "ClapTrap.hpp"
 
 class ScavTrap : public ClapTrap
 {
@@ -22,3 +24,5 @@ class ScavTrap : public ClapTrap
 
 		ScavTrap&	operator=(const ScavTrap& other);
 };
+
+#endif
