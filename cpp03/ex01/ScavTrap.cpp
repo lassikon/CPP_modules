@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 19:46:16 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/30 15:40:03 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/07/30 15:59:37 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,18 @@ ScavTrap&	ScavTrap::operator=(const ScavTrap &other)
 
 void    ScavTrap::attack(const std::string& target)
 {
-    if (_hitPoints < 1)
+    if (_hitPoints == 0)
         std::cout << "ScavTrap " << _name << " can't attack because it's dead";
-    else if (_energyPoints > 0)
+    else if (_energyPoints == 0)
+    {
+        std::cout << "ScavTrap " << _name
+            << " doesn't have enough energy to attack " << target; 
+    }
+    else
     {
         std::cout << "ScavTrap " << _name << " attacks " << target
             << ", causing " << _attackDamage << " points of damage";
         _energyPoints--;
-    }
-    else
-    {
-        std::cout << "ScavTrap " << _name
-            << " doesn't have enough energy to attack " << target;
     }
     std::cout << std::endl;
 }
