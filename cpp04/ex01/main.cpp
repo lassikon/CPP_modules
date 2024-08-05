@@ -6,13 +6,16 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:51:14 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/02 12:18:51 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/05 13:43:09 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
+#include "Brain.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 #include <iostream>
 
 int main()
@@ -25,10 +28,19 @@ int main()
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();
 	meta->makeSound();
+	
+	std::cout << std::endl << "WrongAnimal & WrongCat:" << std::endl;
+	const WrongAnimal* wrongAnimal = new WrongAnimal();
+	const WrongAnimal* cat = new WrongCat();
+	std::cout << cat->getType() << " " << std::endl;
+	cat->makeSound(); //will output the wronganimal sound!
+	wrongAnimal->makeSound();
 
 	delete(meta);
 	delete(j);
 	delete(i);
+	delete(wrongAnimal);
+	delete(cat);
 
 	return 0;
 }

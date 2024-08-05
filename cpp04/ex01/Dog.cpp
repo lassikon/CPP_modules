@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:57:04 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/02 12:02:59 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/05 13:41:05 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,23 @@
 
 Dog::Dog() : Animal()
 {
-	type = "Dog";
 	std::cout << "Dog default constructor called" << std::endl;
+	type = "Dog";
+	brain = new Brain();
 }
 
 Dog::Dog(const Dog& other) : Animal(other)
 {
 	std::cout << "Dog copy constructor called" << std::endl;
+	brain = new Brain();
+	for (int i = 0; i < 100; i++)
+		brain->setIdea(other.brain->getIdea(i), i);
 }
 
 Dog::~Dog()
 {
 	std::cout << "Dog destructor called" << std::endl;
+	delete brain;
 }
 
 Dog&	Dog::operator=(const Dog& other)
@@ -35,6 +40,8 @@ Dog&	Dog::operator=(const Dog& other)
 	if (this != &other)
 	{
 		this->type = other.type;
+		for (int i = 0; i < 100; i++)
+			brain->setIdea(other.brain->getIdea(i), i);
 	}
 	return (*this);
 }
@@ -42,4 +49,9 @@ Dog&	Dog::operator=(const Dog& other)
 void	Dog::makeSound() const
 {
 	std::cout << type << ": *barks*" << std::endl;
+}
+
+Brain*	Dog::getBrain() const
+{
+	return (brain);
 }

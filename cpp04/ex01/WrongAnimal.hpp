@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/02 12:05:23 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/05 13:30:57 by lkonttin         ###   ########.fr       */
+/*   Created: 2024/08/05 12:48:24 by lkonttin          #+#    #+#             */
+/*   Updated: 2024/08/05 12:51:23 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
 
-# include "Animal.hpp"
-# include "Brain.hpp"
+# include <string>
 
-class Cat : public Animal
+class WrongAnimal
 {
-	private:
-		Brain*	brain;
+	protected:
+		std::string	type;
 
 	public:
-		Cat();
-		Cat(const Cat& other);
-		~Cat() override;
-		
-		Cat&	operator=(const Cat& other);
+		WrongAnimal();
+		WrongAnimal(const WrongAnimal& other);
+		~WrongAnimal();
 
-		void	makeSound() const override;
-		Brain*	getBrain() const;
+		WrongAnimal&	operator=(const WrongAnimal& other);
+
+		std::string		getType() const;
+		void			makeSound() const;
 };
 
 #endif

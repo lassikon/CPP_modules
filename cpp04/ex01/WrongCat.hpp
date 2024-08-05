@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/02 12:05:23 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/05 13:30:57 by lkonttin         ###   ########.fr       */
+/*   Created: 2024/08/05 12:52:10 by lkonttin          #+#    #+#             */
+/*   Updated: 2024/08/05 12:53:12 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
 
-# include "Animal.hpp"
-# include "Brain.hpp"
+# include "WrongAnimal.hpp"
 
-class Cat : public Animal
+class WrongCat : public WrongAnimal
 {
-	private:
-		Brain*	brain;
-
 	public:
-		Cat();
-		Cat(const Cat& other);
-		~Cat() override;
+		WrongCat();
+		WrongCat(const WrongCat& other);
+		~WrongCat();
 		
-		Cat&	operator=(const Cat& other);
+		WrongCat&	operator=(const WrongCat& other);
 
-		void	makeSound() const override;
-		Brain*	getBrain() const;
+		void	makeSound() const;
 };
 
 #endif

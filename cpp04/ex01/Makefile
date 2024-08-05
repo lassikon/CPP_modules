@@ -5,7 +5,10 @@ FLAGS	:= -Wall -Wextra -Werror
 SRC		:=	main.cpp \
 			Animal.cpp \
 			Dog.cpp \
-			Cat.cpp
+			Cat.cpp \
+			Brain.cpp \
+			WrongAnimal.cpp \
+			WrongCat.cpp
 
 OBJ		:= $(SRC:.cpp=.o)
 
