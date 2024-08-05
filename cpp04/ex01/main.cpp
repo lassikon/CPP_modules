@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:51:14 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/02 12:13:19 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/02 12:18:51 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int main()
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();
 	meta->makeSound();
+
+	delete(meta);
+	delete(j);
+	delete(i);
 
 	return 0;
 }
