@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:51:14 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/05 13:43:09 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/07 20:03:48 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,25 @@
 
 int main()
 {
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
-	meta->makeSound();
-	
-	std::cout << std::endl << "WrongAnimal & WrongCat:" << std::endl;
-	const WrongAnimal* wrongAnimal = new WrongAnimal();
-	const WrongAnimal* cat = new WrongCat();
-	std::cout << cat->getType() << " " << std::endl;
-	cat->makeSound(); //will output the wronganimal sound!
-	wrongAnimal->makeSound();
-
-	delete(meta);
-	delete(j);
-	delete(i);
-	delete(wrongAnimal);
-	delete(cat);
-
-	return 0;
+    int n = 100;
+    Animal *animals[100];
+    for (int i = 0; i < n; i++)
+    {
+        if (i < 50)
+            animals[i] = new Dog();
+        else
+            animals[i] = new Cat();
+    }
+    for (int i = 0; i < n; i++)
+    {
+        std::cout << "memory address of " << (animals[i]->getType()) << ": " << &animals[i] << " and its brain: ";
+        if (animals[i]->getType() == "Cat")
+            std::cout << dynamic_cast<Cat*>(animals[i])->getBrain() << std::endl;
+        else
+            std::cout << dynamic_cast<Dog*>(animals[i])->getBrain() << std::endl;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        delete animals[i];
+    }
 }
