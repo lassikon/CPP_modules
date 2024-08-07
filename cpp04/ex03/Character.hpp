@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/02 11:26:34 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/07 12:02:46 by lkonttin         ###   ########.fr       */
+/*   Created: 2024/08/07 11:13:01 by lkonttin          #+#    #+#             */
+/*   Updated: 2024/08/07 11:18:11 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef CHARACTER_HPP
+# define CHARACTER_HPP
 
-# include <string>
+# include "ICharacter.hpp"
 
-class Animal
+class Character : public ICharacter
 {
-	protected:
-		std::string	type;
+    private:
+        static const int    inventorySize = 4;
 
-	public:
-		Animal();
-		Animal(const Animal& other);
-		virtual ~Animal();
-
-		Animal&	operator=(const Animal& other);
-
-		std::string		getType() const;
-		virtual void	makeSound() const;
+    public:
+        Character();
 };
 
 #endif

@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/02 11:26:34 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/07 12:02:46 by lkonttin         ###   ########.fr       */
+/*   Created: 2024/08/07 11:05:17 by lkonttin          #+#    #+#             */
+/*   Updated: 2024/08/07 11:11:46 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef ICE_HPP
+# define ICE_HPP
 
-# include <string>
+# include "AMateria.hpp"
+# include "ICharacter.hpp"
 
-class Animal
+class Ice : public AMateria
 {
-	protected:
-		std::string	type;
+    public:
 
-	public:
-		Animal();
-		Animal(const Animal& other);
-		virtual ~Animal();
-
-		Animal&	operator=(const Animal& other);
-
-		std::string		getType() const;
-		virtual void	makeSound() const;
 };
 
 #endif
