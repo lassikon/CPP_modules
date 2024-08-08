@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 17:14:44 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/30 15:56:41 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/08 10:59:17 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 ClapTrap::ClapTrap() :  _name("NoName"), _hitPoints(10),
                     _energyPoints(10), _attackDamage(0)
 {
-    std::cout << "ClapTrap default constructor called" << std::endl;
+    std::cout << "ClapTrap " << _name << " default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const std::string& name) :  _name(name), _hitPoints(10),
@@ -23,6 +23,7 @@ ClapTrap::ClapTrap(const std::string& name) :  _name(name), _hitPoints(10),
 {
     std::cout << "ClapTrap " << _name << " has been created" << std::endl;
 }
+
 ClapTrap::ClapTrap(const ClapTrap& other) : _name(other._name),
      _hitPoints(other._hitPoints), _energyPoints(other._energyPoints),
      _attackDamage(other._attackDamage)
@@ -37,6 +38,8 @@ ClapTrap::~ClapTrap()
 
 ClapTrap&  ClapTrap::operator=(const ClapTrap& other)
 {
+    std::cout << "ClapTrap " << _name
+    << " copy assignment operator called" << std::endl;
     if (this != &other)
     {
         _name = other._name;

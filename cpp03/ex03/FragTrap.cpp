@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 15:41:15 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/30 15:46:15 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/08 11:04:48 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 FragTrap::FragTrap() : ClapTrap()
 {
-	std::cout << "FragTrap default constructor called" << std::endl;
+    _name = "NoName";
+	std::cout << "FragTrap " << _name << " default constructor called" << std::endl;
     _hitPoints = 100;
     _energyPoints = 100;
     _attackDamage = 30;

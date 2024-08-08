@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 16:02:10 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/30 16:57:52 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/08 11:37:03 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 DiamondTrap::DiamondTrap() : ClapTrap(), ScavTrap(), FragTrap(),
 	_name("NoName_clap_name")
 {
-	std::cout << "DiamondTrap default constructor called" << std::endl;
     _energyPoints = 50;
+	std::cout << "DiamondTrap " << _name << " default constructor called" << std::endl;
+	std::cout << _name << ": Hit points = " << _hitPoints << std::endl;
+	std::cout << _name << ": Energy points = " << _energyPoints << std::endl;
+	std::cout << _name << ": Attack damage = " << _attackDamage << std::endl;
 }
 
 DiamondTrap::DiamondTrap(const std::string& name) : ClapTrap(name + "_clap_name"),
@@ -24,10 +27,13 @@ DiamondTrap::DiamondTrap(const std::string& name) : ClapTrap(name + "_clap_name"
 {
     _energyPoints = 50;
 	std::cout << "DiamondTrap " << _name << " has been created" << std::endl;
+	std::cout << _name << ": Hit points = " << _hitPoints << std::endl;
+	std::cout << _name << ": Energy points = " << _energyPoints << std::endl;
+	std::cout << _name << ": Attack damage = " << _attackDamage << std::endl;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap& other) : ClapTrap(other),
-	ScavTrap(other), FragTrap(other)
+	ScavTrap(other), FragTrap(other), _name(other._name)
 {
 	std::cout << "DiamondTrap " << _name << " copy constructor called" << std::endl;
 }

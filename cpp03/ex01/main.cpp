@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 12:12:34 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/30 16:00:18 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/08 11:08:40 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ int main(void)
 
 	green.guardGate();
 	blue.guardGate();
+	std::cout << std::endl;
+
+	ClapTrap yellow("Yellow");
+	yellow.attack("Blue");
+	std::cout << std::endl;
+
+	green = red;
+	green.attack("Green");
 	std::cout << std::endl;
 
 	return (0);

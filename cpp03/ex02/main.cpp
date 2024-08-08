@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 12:12:34 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/30 15:49:28 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/08 11:15:36 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ int main(void)
 
 	green.highFivesGuys();
 	blue.highFivesGuys();
+	std::cout << std::endl;
+
+	blue = green;
+	blue.highFivesGuys();
+	std::cout << std::endl;
+
+	FragTrap yellow = green;
+	yellow.highFivesGuys();
 	std::cout << std::endl;
 
 	return (0);

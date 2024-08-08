@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 12:12:34 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/29 19:37:52 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/08 10:48:05 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ int main(void)
 	green.beRepaired(5);
 	green.attack("Red");
 	std::cout << std::endl;
+
+	green = red;
+	green.attack("Red");
 
 	return (0);
 }

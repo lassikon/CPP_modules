@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 12:12:34 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/07/30 16:56:39 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/08 11:19:20 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ int main(void)
 	red = green;
 	red.whoAmI();
 	red.highFivesGuys();
+	std::cout << std::endl;
+
+	DiamondTrap yellow = blue;
+	yellow.whoAmI();
 	std::cout << std::endl;
 
 	return (0);
