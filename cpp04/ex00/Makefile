@@ -1,26 +1,31 @@
-NAME	:= animal
-CC		:= c++
-FLAGS	:= -Wall -Wextra -Werror
+NAME = animal
+COMPILER = c++
+FLAGS = -Wall -Wextra -Werror
 
-SRC		:=	main.cpp \
-			Animal.cpp \
-			Dog.cpp \
-			Cat.cpp \
-			WrongAnimal.cpp \
-			WrongCat.cpp
+SRC =	main.cpp \
+		Animal.cpp \
+		Dog.cpp \
+		Cat.cpp \
+		WrongAnimal.cpp \
+		WrongCat.cpp
 
-OBJ		:= $(SRC:.cpp=.o)
+OBJ_DIR = obj/
+
+OBJ = $(addprefix $(OBJ_DIR), $(SRC:.cpp=.o))
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(FLAGS) -o $(NAME) $(OBJ)
+$(NAME): $(OBJ_DIR) $(OBJ)
+	$(COMPILER) $(FLAGS) -o $(NAME) $(OBJ)
 
-%.o: %.cpp
-	$(CC) $(FLAGS) -c $<
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+$(OBJ_DIR)%.o: %.cpp | $(OBJ_DIR)
+	$(COMPILER) $(FLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
 	rm -f $(NAME)
