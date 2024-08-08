@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:00:01 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/06 16:08:41 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:04:03 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class ICharacter;
 class AMateria
 {
 	protected:
-		std::string	type;
+		std::string	_type;
 
 	public:
 		AMateria();
