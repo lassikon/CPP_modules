@@ -4,6 +4,10 @@ FLAGS = -Wall -Wextra -Werror
 
 SRC =	main.cpp \
 		AMateria.cpp \
+		Character.cpp \
+		Cure.cpp \
+		Ice.cpp \
+		MateriaSource.cpp
 
 OBJ_DIR = obj/
 
