@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:51:14 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/12 10:52:42 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/12 10:58:44 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ void    animalArrayTest()
     }
 }
 
-void    deepCopyTest()
+void    copyConstructorTest()
 {
     std::cout << "---------------" << std::endl;
-    std::cout << "DEEP COPY TESTS" << std::endl;
+    std::cout << "COPY CONSTRUCTOR TESTS" << std::endl;
     std::cout << "---------------" << std::endl;
 
     Dog *dog = new Dog();
@@ -98,13 +98,46 @@ void    deepCopyTest()
 
 void    assignmentOperatorTest()
 {
+    std::cout << "---------------" << std::endl;
+    std::cout << "COPY ASSIGNMENT OPERATOR TESTS" << std::endl;
+    std::cout << "---------------" << std::endl;
+
+    Dog *dog = new Dog();
+    (*dog).getBrain()->setIdea("Original idea 1", 0);
+    (*dog).getBrain()->setIdea("Original idea 2", 50);
+
+    std::cout << "ORIGINAL IDEAS:" << std::endl;
+    std::cout << (*dog).getBrain()->getIdea(0) << std::endl;
+    std::cout << (*dog).getBrain()->getIdea(50) << std::endl;
+    std::cout << std::endl;
+
+    Dog *dogCopy = new Dog();
+    (*dogCopy) = (*dog);
+    std::cout << "DOG COPY'S IDEAS:" << std::endl;
+    std::cout << (*dogCopy).getBrain()->getIdea(0) << std::endl;
+    std::cout << (*dogCopy).getBrain()->getIdea(50) << std::endl;
+    std::cout << std::endl;
     
+    (*dogCopy).getBrain()->setIdea("New idea 1", 0);
+    (*dogCopy).getBrain()->setIdea("New idea 2", 50);
+    std::cout << "DOG COPY'S NEW IDEAS:" << std::endl;
+    std::cout << (*dogCopy).getBrain()->getIdea(0) << std::endl;
+    std::cout << (*dogCopy).getBrain()->getIdea(50) << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "ORIGINAL DOG'S IDEAS:" << std::endl;
+    std::cout << (*dog).getBrain()->getIdea(0) << std::endl;
+    std::cout << (*dog).getBrain()->getIdea(50) << std::endl;
+    std::cout << std::endl;
+
+    delete dog;
+    delete dogCopy;
 }
 
 int main()
 {
     testFromSubject();
     animalArrayTest();
-    deepCopyTest();
+    copyConstructorTest();
     assignmentOperatorTest();
 }
