@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 11:30:32 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/09 16:38:42 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/12 11:44:42 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ Cure::~Cure()
 Cure&	Cure::operator=(const Cure& other)
 {
 	std::cout << "Cure copy assignment operator called" << std::endl;
+	(void)other;
 	return (*this);
 }
 

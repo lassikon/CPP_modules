@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 16:06:46 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/06 16:07:48 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/12 11:43:17 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "AMateria.hpp"
 # include <string>
+
+class AMateria;
 
 class ICharacter
 {

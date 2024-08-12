@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 15:59:53 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/09 11:26:13 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/12 11:44:10 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ AMateria::~AMateria()
 
 AMateria& AMateria::operator=(const AMateria& other)
 {
+    (void)other;
     return (*this);
 }
 

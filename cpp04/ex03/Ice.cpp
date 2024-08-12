@@ -6,14 +6,14 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 11:33:13 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/09 16:39:58 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/12 11:49:20 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Ice.hpp"
 #include <iostream>
 
-Ice::Ice() : AMateria("Ice")
+Ice::Ice() : AMateria("ice")
 {
 	std::cout << "Ice default constructor called" << std::endl;
 }
@@ -31,6 +31,7 @@ Ice::~Ice()
 Ice&	Ice::operator=(const Ice& other)
 {
 	std::cout << "Ice copy assignment operator called" << std::endl;
+	(void)other;
 	return (*this);
 }
 
