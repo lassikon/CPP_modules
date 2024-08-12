@@ -22,6 +22,9 @@ $(NAME): $(OBJ_DIR) $(OBJ)
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
+$(OBJ_DIR)%.o: %.cpp %.hpp | $(OBJ_DIR)
+	$(COMPILER) $(FLAGS) -c $< -o $@
+
 $(OBJ_DIR)%.o: %.cpp | $(OBJ_DIR)
 	$(COMPILER) $(FLAGS) -c $< -o $@
 
