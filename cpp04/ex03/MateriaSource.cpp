@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 16:45:01 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/09 17:14:18 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/12 12:20:11 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,12 @@ MateriaSource::~MateriaSource()
 	std::cout << "MateriaSource destructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
-		delete _memory[i];
-		_memory[i] = nullptr;
+		if (_memory[i] != nullptr)
+		{
+			std::cout << "DELETING " << _memory[i] << std::endl;
+			delete _memory[i];
+			_memory[i] = nullptr;
+		}
 	}
 }
 

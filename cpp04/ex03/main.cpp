@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:27:22 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/12 11:47:44 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/12 12:17:26 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,33 @@ void    testsFromSubject()
     delete src;
 }
 
+void    fillMateriaSource(IMateriaSource* src)
+{
+    std::cout << "----------------------------" << std::endl;
+    std::cout << "FILLING MATERIASOURCE MEMORY" << std::endl;
+    std::cout << "----------------------------" << std::endl;
+
+    AMateria* ice = new Ice();
+    AMateria* cure1 = new Cure();
+    AMateria* cure2 = new Cure();
+
+    src->learnMateria(ice);
+    src->learnMateria(cure1);
+    src->learnMateria(ice);
+    src->learnMateria(cure2);
+    // src->learnMateria(ice);
+    src->learnMateria(nullptr);
+}
+
 int main()
 {
-    testsFromSubject();
+    // testsFromSubject();
+
+    IMateriaSource* src = new MateriaSource();
+    ICharacter* bob = new Character("Bob");
+
+    fillMateriaSource(src);
+    
+    delete src;
+    delete bob;
 }
