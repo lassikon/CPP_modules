@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:51:14 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/12 10:58:44 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/12 11:09:10 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "Brain.hpp"
-#include "WrongAnimal.hpp"
-#include "WrongCat.hpp"
 #include <iostream>
 
 void    testFromSubject()
