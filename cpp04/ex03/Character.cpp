@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 10:58:32 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/13 11:38:24 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/13 12:33:16 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 
 Character::Character() : _name("Default")
 {
-	std::cout << "Character default constructor called" << std::endl;
+	// std::cout << "Character default constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		_inventory[i] = nullptr;
 }
 
 Character::Character(const std::string& name) : _name(name)
 {
-	std::cout << "Character constructor called" << std::endl;
+	// std::cout << "Character constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		_inventory[i] = nullptr;
 }
 
 Character::Character(const Character& other) : _name(other._name)
 {
-	std::cout << "Character copy constructor called" << std::endl;
+	// std::cout << "Character copy constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (other._inventory[i] != nullptr)
@@ -41,14 +41,14 @@ Character::Character(const Character& other) : _name(other._name)
 
 Character::~Character()
 {
-	std::cout << "Character destructor called" << std::endl;
+	// std::cout << "Character destructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		delete _inventory[i];
 }
 
 Character&	Character::operator=(const Character& other)
 {
-	std::cout << "Character copy assignment operator called" << std::endl;
+	// std::cout << "Character copy assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		_name = other._name;

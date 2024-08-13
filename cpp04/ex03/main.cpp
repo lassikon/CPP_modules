@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:27:22 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/13 11:39:54 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/13 13:05:15 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void    equipCharacter(ICharacter* bob, IMateriaSource* src)
     tmp = src->createMateria("cure");
     bob->equip(tmp);
 
-
     AMateria* trashBin[20]; // to hold unequipped items for deleting
     for (int i = 0; i < 20; i++)
         trashBin[i] = nullptr;
@@ -86,11 +85,13 @@ void    equipCharacter(ICharacter* bob, IMateriaSource* src)
     bob->unequip(0);
     trashBin[1] = dynamic_cast<Character*>(bob)->getInventory(1);
     bob->unequip(1);
+    trashBin[2] = dynamic_cast<Character*>(bob)->getInventory(2);
     bob->unequip(2);
+    trashBin[3] = dynamic_cast<Character*>(bob)->getInventory(3);
     bob->unequip(3);
     bob->unequip(4); // should output nothing
-
-    // bob->use(0, bob);
+    
+    delete tmp;
 
     for (int i = 0; i < 20; i++)
     {
@@ -102,15 +103,82 @@ void    equipCharacter(ICharacter* bob, IMateriaSource* src)
     }
 }
 
+void    useMateria(ICharacter* bob, IMateriaSource* src)
+{
+    std::cout << "-------------" << std::endl;
+    std::cout << "USING MATERIA" << std::endl;
+    std::cout << "-------------" << std::endl;
+
+    ICharacter* tim = new Character("Tim");
+
+    bob->equip(src->createMateria("cure"));
+    bob->equip(src->createMateria("ice"));
+
+    bob->use(0, *tim);
+    bob->use(1, *tim);
+    bob->use(2, *tim); // should output nothing
+
+    delete tim;
+}
+
+void    copyConstructorTest()
+{
+    std::cout << "---------------" << std::endl;
+    std::cout << "COPY CONSTRUCTOR TESTS" << std::endl;
+    std::cout << "---------------" << std::endl;
+
+    IMateriaSource* src = new MateriaSource();
+
+    src->learnMateria(new Ice());
+    src->learnMateria(new Cure());
+
+    IMateriaSource* srcCopy = new MateriaSource(*dynamic_cast<MateriaSource*>(src));
+
+    src->learnMateria(new Ice());
+    src->learnMateria(new Cure()); // results in full memory  
+    
+    src->learnMateria(new Ice()); // cannot learn
+    srcCopy->learnMateria(new Ice()); // will learn
+
+    delete src;
+    delete srcCopy;
+}
+
+void    assignmentOperatorTest()
+{
+    std::cout << "---------------" << std::endl;
+    std::cout << "COPY ASSIGNMENT OPERATOR TESTS" << std::endl;
+    std::cout << "---------------" << std::endl;
+
+    IMateriaSource* src = new MateriaSource();
+
+    src->learnMateria(new Ice());
+    src->learnMateria(new Cure());
+
+    IMateriaSource* src2 = new MateriaSource();
+
+    src2 = src;
+    src2->learnMateria(new Ice());
+    src2->learnMateria(new Cure()); // results in full inventory
+    src2->learnMateria(new Ice()); // cannot learn
+    src->learnMateria(new Cure()); // will learn
+
+    delete src;
+    delete src2;
+}
+
 int main()
 {
-    // testsFromSubject();
+    testsFromSubject();
 
     IMateriaSource* src = new MateriaSource();
     ICharacter* bob = new Character("Bob");
 
     fillMateriaSource(src);
     equipCharacter(bob, src);
+    useMateria(bob, src);
+    copyConstructorTest();
+    assignmentOperatorTest();
     
     delete src;
     delete bob;

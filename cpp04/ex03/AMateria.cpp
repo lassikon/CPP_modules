@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 15:59:53 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/12 11:44:10 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/13 12:33:16 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,22 @@
 
 AMateria::AMateria() : _type("Default")
 {
-    std::cout << "AMateria default constructor called for type: " << _type << std::endl;
+    // std::cout << "AMateria default constructor called for type: " << _type << std::endl;
 }
 
 AMateria::AMateria(std::string const & type) : _type(type)
 {
-    std::cout << "AMateria constructor called for type: " << _type << std::endl;
+    // std::cout << "AMateria constructor called for type: " << _type << std::endl;
 }
 
 AMateria::AMateria(const AMateria& other) : _type(other._type)
 {
-    std::cout << "AMateria copy constructor called for type: " << _type << std::endl;
+    // std::cout << "AMateria copy constructor called for type: " << _type << std::endl;
 }
 
 AMateria::~AMateria()
 {
-    std::cout << "AMateria destructor called for type: " << _type << std::endl;
+    // std::cout << "AMateria destructor called for type: " << _type << std::endl;
 }
 
 AMateria& AMateria::operator=(const AMateria& other)

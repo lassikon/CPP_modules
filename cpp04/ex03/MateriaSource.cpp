@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 16:45:01 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/13 11:00:00 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/13 12:33:16 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 MateriaSource::MateriaSource()
 {
-	std::cout << "MateriaSource default constructor called" << std::endl;
+	// std::cout << "MateriaSource default constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		_memory[i] = nullptr;
 }
 
 MateriaSource::MateriaSource(const MateriaSource& other)
 {
-	std::cout << "MateriaSource copy constructor called" << std::endl;
+	// std::cout << "MateriaSource copy constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (other._memory[i] != nullptr)
@@ -34,7 +34,7 @@ MateriaSource::MateriaSource(const MateriaSource& other)
 
 MateriaSource::~MateriaSource()
 {
-	std::cout << "MateriaSource destructor called" << std::endl;
+	// std::cout << "MateriaSource destructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (_memory[i] != nullptr)
@@ -52,7 +52,7 @@ MateriaSource::~MateriaSource()
 
 MateriaSource&	MateriaSource::operator=(const MateriaSource& other)
 {
-	std::cout << "MateriaSource copy assignment operator called" << std::endl;
+	// std::cout << "MateriaSource copy assignment operator called" << std::endl;
 	if (this != &other)
 	{
 		for (int i = 0; i < 4; i++)
