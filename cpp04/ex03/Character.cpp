@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 10:58:32 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/09 17:20:25 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/13 11:38:24 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	Character::equip(AMateria* m)
 	{
 		if (_inventory[i] == nullptr)
 		{
+			std::cout << _name << " equipped " << m->getType() << " to slot " << i << std::endl;
 			_inventory[i] = m;
 			return ;
 		}
@@ -86,8 +87,12 @@ void	Character::equip(AMateria* m)
 
 void	Character::unequip(int idx)
 {
-	if (idx >= 0 && idx <= 3)
+	if (idx >= 0 && idx <= 3 && _inventory[idx])
+	{
+		std::cout << _name << " unequipped " << _inventory[idx]->getType()
+			<< " from slot " << idx << std::endl;
 		_inventory[idx] = nullptr;
+	}
 }
 
 void	Character::use(int idx, ICharacter& target)
