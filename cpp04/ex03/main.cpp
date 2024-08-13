@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:27:22 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/13 13:05:15 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/13 16:01:29 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,9 +139,33 @@ void    copyConstructorTest()
     
     src->learnMateria(new Ice()); // cannot learn
     srcCopy->learnMateria(new Ice()); // will learn
+    std::cout << std::endl;
+
+    ICharacter* pete = new Character("Pete");
+    pete->equip(src->createMateria("ice"));
+    ICharacter* peteCopy = new Character(*dynamic_cast<Character*>(pete));
+    std::cout << "peteCopy name: " << peteCopy->getName() << std::endl;
+    peteCopy->use(0, *pete); // can use ice
+    pete->equip(src->createMateria("cure"));
+    peteCopy->use(1, *pete); // cannot use cure
+    std::cout << std::endl;
+
+    AMateria* ice = new Ice();
+    AMateria* iceCopy = new Ice(*dynamic_cast<Ice*>(ice));
+    iceCopy->use(*pete);
+
+    AMateria* cure = new Cure();
+    AMateria* cureCopy = new Cure(*dynamic_cast<Cure*>(cure));
+    cureCopy->use(*pete);
 
     delete src;
     delete srcCopy;
+    delete pete;
+    delete peteCopy;
+    delete ice;
+    delete iceCopy;
+    delete cure;
+    delete cureCopy;
 }
 
 void    assignmentOperatorTest()
@@ -150,21 +174,48 @@ void    assignmentOperatorTest()
     std::cout << "COPY ASSIGNMENT OPERATOR TESTS" << std::endl;
     std::cout << "---------------" << std::endl;
 
-    IMateriaSource* src = new MateriaSource();
+    MateriaSource* src = new MateriaSource();
 
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
 
-    IMateriaSource* src2 = new MateriaSource();
+    MateriaSource* srcCopy = new MateriaSource();
 
-    src2 = src;
-    src2->learnMateria(new Ice());
-    src2->learnMateria(new Cure()); // results in full inventory
-    src2->learnMateria(new Ice()); // cannot learn
+    *srcCopy = *src;
+    srcCopy->learnMateria(new Ice());
+    srcCopy->learnMateria(new Cure()); // results in full inventory
+    srcCopy->learnMateria(new Ice()); // cannot learn
     src->learnMateria(new Cure()); // will learn
+    std::cout << std::endl;
+
+    Character* pete = new Character("Pete");
+    Character* peteCopy = new Character("Pete2");
+    pete->equip(src->createMateria("ice"));
+    *peteCopy = *pete;
+    std::cout << "peteCopy name: " << peteCopy->getName() << std::endl;
+    peteCopy->use(0, *pete); // can use ice
+    pete->equip(src->createMateria("cure"));
+    peteCopy->use(1, *pete); // cannot use cure
+    std::cout << std::endl;
+
+    Ice* ice = new Ice();
+    Ice* iceCopy = new Ice();
+    *iceCopy = *ice;
+    iceCopy->use(*pete);
+
+    Cure* cure = new Cure();
+    Cure* cureCopy = new Cure();
+    *cureCopy = *cure;
+    cureCopy->use(*pete);
 
     delete src;
-    delete src2;
+    delete srcCopy;
+    delete pete;
+    delete peteCopy;
+    delete ice;
+    delete iceCopy;
+    delete cure;
+    delete cureCopy;
 }
 
 int main()

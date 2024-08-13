@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 16:45:01 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/13 12:33:16 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:27:18 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,9 @@ MateriaSource&	MateriaSource::operator=(const MateriaSource& other)
 		for (int i = 0; i < 4; i++)
 		{
 			delete _memory[i];
+			_memory[i] = nullptr;
 			if (other._memory[i] != nullptr)
 				_memory[i] = other._memory[i]->clone();
-			else
-				_memory[i] = nullptr;
-			
 		}
 	}
 	return (*this);

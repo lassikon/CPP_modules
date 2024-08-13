@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 10:58:32 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/13 12:33:16 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/13 15:49:34 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,9 @@ Character&	Character::operator=(const Character& other)
 		for (int i = 0; i < 4; i++)
 		{
 			delete _inventory[i];
+			_inventory[i] = nullptr;
 			if (other._inventory[i] != nullptr)
 				_inventory[i] = other._inventory[i]->clone();
-			else
-				_inventory[i] = nullptr;
-			
 		}
 	}
 	return (*this);
