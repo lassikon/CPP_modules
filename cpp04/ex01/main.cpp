@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:51:14 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/12 11:09:10 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/14 09:58:39 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void    animalArrayTest()
 
 void    copyConstructorTest()
 {
-    std::cout << "---------------" << std::endl;
+    std::cout << "----------------------" << std::endl;
     std::cout << "COPY CONSTRUCTOR TESTS" << std::endl;
-    std::cout << "---------------" << std::endl;
+    std::cout << "----------------------" << std::endl;
 
     Dog *dog = new Dog();
     (*dog).getBrain()->setIdea("Original idea 1", 0);
@@ -96,9 +96,9 @@ void    copyConstructorTest()
 
 void    assignmentOperatorTest()
 {
-    std::cout << "---------------" << std::endl;
+    std::cout << "------------------------------" << std::endl;
     std::cout << "COPY ASSIGNMENT OPERATOR TESTS" << std::endl;
-    std::cout << "---------------" << std::endl;
+    std::cout << "------------------------------" << std::endl;
 
     Dog *dog = new Dog();
     (*dog).getBrain()->setIdea("Original idea 1", 0);
