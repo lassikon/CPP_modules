@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/12 11:27:22 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/13 16:01:29 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/14 09:52:13 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,11 @@ void    equipCharacter(ICharacter* bob, IMateriaSource* src)
     {
         if (trashBin[i])
         {
+            for (int k = i + 1; k < 20; k++) // to avoid double free
+			{
+				if (trashBin[k] == trashBin[i])
+					trashBin[k] = nullptr;
+			}
             delete trashBin[i];
             trashBin[i] = nullptr;
         }
