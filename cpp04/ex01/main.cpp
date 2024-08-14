@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:51:14 by lkonttin          #+#    #+#             */
-/*   Updated: 2024/08/14 09:58:39 by lkonttin         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:10:00 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void    animalArrayTest()
     Animal *animals[10];
     for (int i = 0; i < 10; i++)
     {
-        if (i < 50)
+        if (i < 5)
             animals[i] = new Dog();
         else
             animals[i] = new Cat();
