@@ -1,9 +1,10 @@
-NAME = bureaucrat
+NAME = form
 COMPILER = c++
 FLAGS = -Wall -Wextra -Werror
 
 SRC =	main.cpp \
-		Bureaucrat.cpp
+		Bureaucrat.cpp \
+		Form.cpp
 
 OBJ_DIR = obj/
 

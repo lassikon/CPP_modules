@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:55:53 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/10 12:26:25 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/10 15:46:58 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,16 @@ static void testConstructors() {
   } catch (std::exception &e) {
     std::cout << e.what() << std::endl;
   }
-  std::cout << std::endl;
+
+  Bureaucrat b7 = Bureaucrat("Bureaucrat 7", 1);
+  Bureaucrat b8 = Bureaucrat(b7);
+
+  std::cout << b7;
+  std::cout << b8;
 }
 
-static void testOperators() {
-  greenMessage("Testing operators");
+static void testOperatorOverload() {
+  greenMessage("Testing operator overloads");
   Bureaucrat b1("Bureaucrat 1", 1);
   Bureaucrat b2("Bureaucrat 2", 150);
   Bureaucrat b3("Bureaucrat 3", 1);
@@ -101,7 +106,7 @@ static void testIncrementDecrement() {
 
 int main() {
   testConstructors();
-  testOperators();
+  testOperatorOverload();
   testIncrementDecrement();
 
   return 0;
