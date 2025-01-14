@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:55:53 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/14 16:38:12 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/14 16:42:38 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,21 @@ void testIntern() {
     std::cout << *form << std::endl;
     delete form;
   }
+  std::cout << std::endl;
 
   form = intern.makeForm("robotomy request", "Bender");
   if (form) {
     std::cout << *form << std::endl;
     delete form;
   }
+  std::cout << std::endl;
 
   form = intern.makeForm("presidential pardon", "Zaphod");
   if (form) {
     std::cout << *form << std::endl;
     delete form;
   }
+  std::cout << std::endl;
 
   greenMessage("Testing invalid form");
 
@@ -48,6 +51,7 @@ void testIntern() {
   if (!form) {
     std::cout << "Failed to create form." << std::endl;
   }
+  std::cout << std::endl;
 }
 
 int main() {
