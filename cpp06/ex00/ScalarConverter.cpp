@@ -6,14 +6,17 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 21:26:59 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/14 22:34:33 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/15 12:11:47 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
 static void printChar(int64_t c) {
-  if (std::isprint(c)) {
+  if (c < std::numeric_limits<char>::min() ||
+      c > std::numeric_limits<char>::max()) {
+    std::cout << "char: impossible\n";
+  } else if (std::isprint(c)) {
     std::cout << "char: '" << static_cast<char>(c) << "'\n";
   } else {
     std::cout << "char: Non displayable\n";
@@ -75,17 +78,32 @@ static void handleDouble(double d) {
   printDouble(d);
 }
 
+static void handleSpecialFloat(const std::string &input) {
+  std::cout << "char: impossible\n";
+  std::cout << "int: impossible\n";
+  std::cout << "float: " << input << "\n";
+  std::cout << "double: " << input.substr(0, input.length() - 1) << "\n";
+}
+
+static void handleSpecialDouble(const std::string &input) {
+  std::cout << "char: impossible\n";
+  std::cout << "int: impossible\n";
+  std::cout << "float: " << input + "f"
+            << "\n";
+  std::cout << "double: " << input << "\n";
+}
+
 static ScalarType getType(const std::string &input) {
   if (input.length() == 1 && !std::isdigit(input[0])) {
     return ScalarType::Char;
   }
   if (input == "inf" || input == "+inf" || input == "-inf" || input == "nan" ||
       input == "+nan" || input == "-nan") {
-    return ScalarType::Double;
+    return ScalarType::SpecialDouble;
   }
   if (input == "+inff" || input == "-inff" || input == "nanf" ||
       input == "+nanf" || input == "-nanf") {
-    return ScalarType::Float;
+    return ScalarType::SpecialFloat;
   }
   try {
     std::stod(input);
@@ -119,6 +137,12 @@ void ScalarConverter::convert(const std::string &input) {
       break;
     case ScalarType::Double:
       handleDouble(std::stod(input));
+      break;
+    case ScalarType::SpecialFloat:
+      handleSpecialFloat(input);
+      break;
+    case ScalarType::SpecialDouble:
+      handleSpecialDouble(input);
       break;
     }
   } catch (...) {
