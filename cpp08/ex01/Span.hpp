@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 15:12:35 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/15 15:31:22 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:54:20 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,12 @@ public:
   Span &operator=(const Span &other);
 
   void addNumber(int number);
-  template <typename It> void addNumbers(It begin, It end);
+  template <typename It> void addNumbers(It begin, It end) {
+    if (std::distance(begin, end) + numbers.size() > N) {
+      throw std::out_of_range("Span is already full");
+    }
+    numbers.insert(numbers.end(), begin, end);
+  }
 
   int shortestSpan();
   int longestSpan();

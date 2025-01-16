@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 15:12:40 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/15 15:37:36 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:51:54 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,6 @@ void Span::addNumber(int number) {
     throw std::out_of_range("Span is already full");
   }
   numbers.push_back(number);
-}
-
-template <typename It> void Span::addNumbers(It begin, It end) {
-  if (std::distance(begin, end) + numbers.size > N) {
-    throw std::out_of_range("Span is already full");
-  }
-  numbers.insert(numbers.end, begin, end);
 }
 
 int Span::shortestSpan() {
