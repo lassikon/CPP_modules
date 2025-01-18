@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:55:53 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/14 16:10:25 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/18 15:33:38 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,12 @@ static void testShrubberyCreationForm() {
   ShrubberyCreationForm form("home");
   greenMessage("Trying to sign the form with Bad Bureaucrat");
   try {
-    form.beSigned(badBureaucrat);
+    badBureaucrat.signForm(form);
   } catch (std::exception &e) {
     std::cerr << e.what() << std::endl;
   }
   greenMessage("Signing the form with Good Bureaucrat");
-  form.beSigned(goodBureaucrat);
+  goodBureaucrat.signForm(form);
   greenMessage("Trying to execute the form with Bad Bureaucrat");
   try {
     badBureaucrat.executeForm(form);
@@ -128,12 +128,12 @@ static void testRobotomyRequestForm() {
   RobotomyRequestForm form("Steve");
   redMessage("Trying to sign the form with Bad Bureaucrat");
   try {
-    form.beSigned(badBureaucrat);
+    badBureaucrat.signForm(form);
   } catch (std::exception &e) {
     std::cerr << e.what() << std::endl;
   }
   redMessage("Signing the form with Good Bureaucrat");
-  form.beSigned(goodBureaucrat);
+  goodBureaucrat.signForm(form);
   redMessage("Trying to execute the form with Bad Bureaucrat");
   try {
     badBureaucrat.executeForm(form);
@@ -153,12 +153,12 @@ static void testPresidentialPardonForm() {
   PresidentialPardonForm form("Bob");
   blueMessage("Trying to sign the form with Bad Bureaucrat");
   try {
-    form.beSigned(badBureaucrat);
+    badBureaucrat.signForm(form);
   } catch (std::exception &e) {
     std::cerr << e.what() << std::endl;
   }
   blueMessage("Signing the form with Good Bureaucrat");
-  form.beSigned(goodBureaucrat);
+  goodBureaucrat.signForm(form);
   blueMessage("Trying to execute the form with Bad Bureaucrat");
   try {
     badBureaucrat.executeForm(form);

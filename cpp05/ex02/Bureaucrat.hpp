@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:55:43 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/14 13:10:53 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/18 15:18:44 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ public:
   void incrementGrade();
   void decrementGrade();
   void validateGrade(int grade);
+  void signForm(AForm &form);
   void executeForm(AForm const &form);
 };
 

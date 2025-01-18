@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:55:51 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/14 13:29:55 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/18 15:34:52 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,17 @@ void Bureaucrat::incrementGrade() {
 void Bureaucrat::decrementGrade() {
   validateGrade(grade + 1);
   grade++;
+}
+
+void Bureaucrat::signForm(AForm& form) {
+	try {
+		form.beSigned(*this);
+		std::cout << name << " signed " << form.getName() << std::endl;
+	}
+	catch (const std::exception& e) {
+		std::cerr << name << " couldn't sign " << form.getName()
+    << " because " << e.what() << std::endl;
+	}
 }
 
 void Bureaucrat::validateGrade(int grade) {
