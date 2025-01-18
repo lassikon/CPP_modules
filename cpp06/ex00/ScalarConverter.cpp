@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 21:26:59 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/15 12:11:47 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/18 12:57:07 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,10 @@ static ScalarType getType(const std::string &input) {
   if (input.length() == 1 && !std::isdigit(input[0])) {
     return ScalarType::Char;
   }
-  if (input == "inf" || input == "+inf" || input == "-inf" || input == "nan" ||
-      input == "+nan" || input == "-nan") {
+  if (input == "+inf" || input == "-inf" || input == "nan") {
     return ScalarType::SpecialDouble;
   }
-  if (input == "+inff" || input == "-inff" || input == "nanf" ||
-      input == "+nanf" || input == "-nanf") {
+  if (input == "+inff" || input == "-inff" || input == "nanf") {
     return ScalarType::SpecialFloat;
   }
   try {

@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:55:53 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/10 16:09:32 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:57:15 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void testOperatorOverload() {
   Bureaucrat b1("Bureaucrat 1", 1);
   std::cout << std::endl;
 
-  form2.signForm(b1);
+  b1.signForm(form2);
 
   std::cout << form1;
   std::cout << form2;
@@ -86,9 +86,9 @@ static void testSignForm() {
   std::cout << std::endl;
 
   try {
-    form1.signForm(b1);
-    form2.signForm(b2);
-    form1.signForm(b2);
+    b1.signForm(form1);
+    b2.signForm(form2);
+    b1.signForm(form2);
   } catch (std::exception &e) {
     std::cout << e.what() << std::endl;
   }

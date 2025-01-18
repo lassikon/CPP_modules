@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 12:40:48 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/10 15:01:04 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:50:31 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ public:
   Form &operator=(const Form &other);
 
   void beSigned(const Bureaucrat &bureaucrat);
-
-  void signForm(const Bureaucrat &bureaucrat);
 
   const std::string &getName() const;
   bool getIsSigned() const;

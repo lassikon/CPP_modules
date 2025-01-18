@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 10:55:43 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/10 12:50:39 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/18 15:14:50 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
+#include "Form.hpp"
 
 class Bureaucrat {
 private:
@@ -46,6 +47,7 @@ public:
   void incrementGrade();
   void decrementGrade();
 
+  void signForm(Form &form);
   void validateGrade(int grade);
 };
 

@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 12:40:51 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/10 15:58:51 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/18 13:47:42 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,6 @@ void Form::beSigned(const Bureaucrat &bureaucrat) {
     throw GradeTooLowException();
   }
   isSigned = true;
-}
-
-void Form::signForm(const Bureaucrat &bureaucrat) {
-  try {
-    beSigned(bureaucrat);
-    std::cout << bureaucrat.getName() << " signed " << name << std::endl;
-  } catch (std::exception &e) {
-    std::cout << bureaucrat.getName() << " couldn't sign " << name
-              << " because " << e.what() << "\n";
-  }
 }
 
 const std::string &Form::getName() const { return name; }
