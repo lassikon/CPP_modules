@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 12:46:40 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/15 13:12:31 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/18 16:00:22 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,12 @@
 #include <iostream>
 
 Base *generate() {
-  std::srand(std::time(0));
+  static bool seeded = false; // Seed only once
+  if (!seeded) {
+    std::srand(std::time(0));
+    seeded = true;
+  }
+
   int random = std::rand() % 3;
 
   switch (random) {
@@ -37,7 +42,13 @@ Base *generate() {
   }
 }
 
+// Using dynamic_cast on a pointer returns nullptr if the cast fails
 void identify(Base *p) {
+  if (!p) {
+    std::cout << "Pointer is null\n";
+    return;
+  }
+  
   if (dynamic_cast<A *>(p)) {
     std::cout << "A\n";
   } else if (dynamic_cast<B *>(p)) {
@@ -49,22 +60,26 @@ void identify(Base *p) {
   }
 }
 
-void idenfity(Base &p) {
+// Using dynamic_cast on a reference throws a std::bad_cast if the cast fails
+void identify(Base &p) {
   try {
     (void)dynamic_cast<A &>(p);
     std::cout << "A\n";
-  } catch (std::bad_cast &e) {
-    try {
-      (void)dynamic_cast<B &>(p);
-      std::cout << "B\n";
-    } catch (std::bad_cast &e) {
-      try {
-        (void)dynamic_cast<C &>(p);
-        std::cout << "C\n";
-      } catch (std::bad_cast &e) {
-        std::cout << "Unknown type\n";
-      }
-    }
+    return;
+  } catch (const std::bad_cast &) {
+  }
+  try {
+    (void)dynamic_cast<B &>(p);
+    std::cout << "B\n";
+    return;
+  } catch (const std::bad_cast &) {
+  }
+  try {
+    (void)dynamic_cast<C &>(p);
+    std::cout << "C\n";
+    return;
+  } catch (const std::bad_cast &) {
+    std::cout << "Unknown type\n";
   }
 }
 
@@ -75,7 +90,7 @@ int main() {
   identify(base);
 
   std::cout << "\nIdentifying reference: ";
-  idenfity(*base);
+  identify(*base);
 
   delete base;
   return 0;
