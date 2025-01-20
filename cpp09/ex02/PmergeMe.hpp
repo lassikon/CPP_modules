@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:55:22 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/20 15:19:50 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/20 22:26:11 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,12 @@ public:
   PmergeMe &operator=(const PmergeMe &other) = delete;
   ~PmergeMe();
 
-  void makeAndSortPairs(std::vector<int> &vec);
+  void printPairs(); // debugging
+
+  void fordJohnsonAlgorithm();
+  void binaryInsertionSort();
+  void makePairs();
+  void sortPairs();
   std::vector<int> sortVector(const std::vector<int> &input);
 
   std::deque<int> sortDeque(const std::deque<int> &input);
