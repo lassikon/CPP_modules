@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:05:36 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/17 12:35:41 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/20 12:51:21 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ PmergeMe::PmergeMe() {}
 
 PmergeMe::~PmergeMe() {}
 
-void PmergeMe::sortVector(const std::vector<int> &input) {
+std::vector<int> PmergeMe::sortVector(const std::vector<int> &input) {
   std::vector<int> sorted = input;
   // Implement Ford-Johnson algorithm here
-  printSequence(sorted);
+  return sorted;
 }
 
-void PmergeMe::sortDeque(const std::deque<int> &input) {
+std::deque<int> PmergeMe::sortDeque(const std::deque<int> &input) {
   std::deque<int> sorted = input;
   // Implement Ford-Johnson algorithm here
-  printSequence(sorted);
+  return sorted;
 }
 
 template <typename Container>
