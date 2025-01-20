@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:21:59 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/20 12:58:34 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:20:54 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static int validateInput(int argc, char **argv) {
       return 1;
     }
   }
+  return 0;
 }
 
 static int sortWithVector(int argc, char **argv) {
@@ -79,10 +80,10 @@ int main(int argc, char **argv) {
     std::cerr << "Usage: ./PMergeMe [integers...]" << std::endl;
     return 1;
   }
-  if (!validateInput(argc, argv)) {
+  if (validateInput(argc, argv)) {
     return 1;
   }
-  if (!sortWithVector(argc, argv) || !sortWithDeque(argc, argv)) {
+  if (sortWithVector(argc, argv) || sortWithDeque(argc, argv)) {
     return 1;
   }
   return 0;
