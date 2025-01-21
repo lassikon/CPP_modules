@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 12:21:59 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/20 15:20:54 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/21 17:33:24 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static int sortWithVector(int argc, char **argv) {
 }
 
 static int sortWithDeque(int argc, char **argv) {
+  return 0;
   PmergeMe pm;
   std::deque<int> deq;
   std::deque<int> sorted;
