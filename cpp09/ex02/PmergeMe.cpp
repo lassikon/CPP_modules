@@ -6,12 +6,12 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:05:36 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/21 18:27:00 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:31:42 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // test case
-// ./ PmergeMe 11 2 17 0 16 8 6 15 10 3 21 1 18 9 14 19 12 5 4 20 13 7
+// ./PmergeMe 11 2 17 0 16 8 6 15 10 3 21 1 18 9 14 19 12 5 4 20 13 7
 
 #include "PmergeMe.hpp"
 #include <algorithm>
@@ -29,6 +29,7 @@ void PmergeMe::formMainAndPendElements() {
   }
   std::cout << "Main elements: ";
   printSequence(vec);
+  std::cout << "Main size: " << vec.size() << std::endl;
 }
 
 void PmergeMe::binaryInsertionSort() {
@@ -42,7 +43,10 @@ void PmergeMe::binaryInsertionSort() {
   if (i >= pairVec.size()) {
     i = pairVec.size() - 1;
   }
-  while (true) {
+  std::cout << "i: " << i << std::endl;
+  
+  // this loop is inserting in the wrong place !!!
+  while (i > 0) {
     size_t left = 0;
     size_t right = i;
     while (left < right) {
@@ -53,25 +57,36 @@ void PmergeMe::binaryInsertionSort() {
         left = mid + 1;
       }
     }
+    std::cout << "Inserting: ";
+    printSequence(pairVec[i].small);
+    std::cout << "Index: " << pairVec[i].index << std::endl;
     vec.insert(vec.begin() + (left * pairSize / 2), pairVec[i].small.begin(),
                pairVec[i].small.end());
-    if (i == 0) {
-      break;
-    }
     i--;
   }
+
+  std::cout << "Vec before oddElement insertion: ";
+  printSequence(vec);
   if (!oddElement.empty()) {
     size_t left = 0;
-    size_t right = pairVec.size();
+    size_t right = vec.size();
+    std::cout << "right: " << right << std::endl;
     while (left < right) {
       size_t mid = left + (right - left) / 2;
-      if (oddElement < pairVec[mid].large) {
+      if (oddElement.back() < vec[mid]) {
+        std::cout << oddElement.back() << " < " << vec[mid] << std::endl;
+        std::cout << "Right: " << right << " Left: " << left << std::endl;
         right = mid;
       } else {
+        std::cout << "mid: " << mid << std::endl;
+        std::cout << "left = mid + 1" << std::endl;
         left = mid + 1;
       }
     }
-    vec.insert(vec.begin() + (left * pairSize / 2), oddElement.begin(),
+    // debugging
+    std::cout << "Inserting odd element after " << vec[left] << std::endl;
+    
+    vec.insert(vec.begin() + left, oddElement.begin(),
                oddElement.end());
   }
   for (size_t i = 0; i < leftovers.size(); i++) {
