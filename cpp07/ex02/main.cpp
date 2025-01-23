@@ -6,18 +6,72 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 14:38:48 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/15 14:49:36 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:03:26 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
 #include <iostream>
 
+#define MAX_VAL 750
+
 static void greenMessage(std::string message) {
   std::cout << "\n\033[32m" << message << "\033[0m\n";
 }
 
+int testsFromSubject() {
+  Array<int> numbers(MAX_VAL);
+    int* mirror = new int[MAX_VAL];
+    srand(time(NULL));
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        const int value = rand();
+        numbers[i] = value;
+        mirror[i] = value;
+    }
+    //SCOPE
+    {
+        Array<int> tmp = numbers;
+        Array<int> test(tmp);
+    }
+
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        if (mirror[i] != numbers[i])
+        {
+            std::cerr << "didn't save the same value!!" << std::endl;
+            return 1;
+        }
+    }
+    try
+    {
+        numbers[-2] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    try
+    {
+        numbers[MAX_VAL] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        numbers[i] = rand();
+    }
+    delete [] mirror;//
+    return 0;
+}
+
 int main() {
+  if (testsFromSubject()) {
+    return 1;
+  }
   try {
     greenMessage("Test 1: Default constructor");
     Array<int> emptyArray;
@@ -86,7 +140,7 @@ int main() {
     stringArray[1] = "Array";
     stringArray[2] = "Template";
 
-    std::cout << "\nString array contents:" << std::endl;
+    std::cout << "String array contents:" << std::endl;
     for (unsigned int i = 0; i < stringArray.size(); ++i) {
       std::cout << "stringArray[" << i << "] = " << stringArray[i] << std::endl;
     }
@@ -98,7 +152,7 @@ int main() {
     doubleArray[1] = 2.71;
 
     emptyAssignArray = doubleArray;
-    std::cout << "\nEmpty array assigned from doubleArray:" << std::endl;
+    std::cout << "Empty array assigned from doubleArray:" << std::endl;
     for (unsigned int i = 0; i < emptyAssignArray.size(); ++i) {
       std::cout << "emptyAssignArray[" << i << "] = " << emptyAssignArray[i]
                 << std::endl;

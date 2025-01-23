@@ -6,11 +6,12 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:14:58 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/15 13:54:57 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/23 13:26:52 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+#include <iostream>
 
 template <typename T> void swap(T &a, T &b) {
   T temp = a;

@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:05:36 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/22 16:31:42 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:25:06 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,21 @@ void PmergeMe::formMainAndPendElements() {
   printSequence(vec);
   std::cout << "Main size: " << vec.size() << std::endl;
 }
+void PmergeMe::updatePairIndexes(int inserted) {
+  for (size_t j = 0; j < vec.size(); j += pairSize / 2) {
+    if (vec[j] == inserted) {
+      while (j < vec.size() - pairSize / 2) {
+        j += pairSize / 2;
+        for (size_t i = 0; i < pairVec.size(); ++i) {
+          if (pairVec[i].small.back() == vec[j]) {
+            pairVec[i].index++;
+          }
+        }
+      }
+      return;
+    }
+  }
+}
 
 void PmergeMe::binaryInsertionSort() {
   if (pairSize * 2 > vec.size()) {
@@ -46,12 +61,13 @@ void PmergeMe::binaryInsertionSort() {
   std::cout << "i: " << i << std::endl;
   
   // this loop is inserting in the wrong place !!!
+  // we need to update the pair indexes after an insertion is made
   while (i > 0) {
     size_t left = 0;
     size_t right = i;
     while (left < right) {
       size_t mid = left + (right - left) / 2;
-      if (pairVec[i].small.back() < pairVec[mid].large.back()) {
+      if (pairVec[i].small.back() < vec[mid * pairSize / 2]) {
         right = mid;
       } else {
         left = mid + 1;
@@ -62,6 +78,7 @@ void PmergeMe::binaryInsertionSort() {
     std::cout << "Index: " << pairVec[i].index << std::endl;
     vec.insert(vec.begin() + (left * pairSize / 2), pairVec[i].small.begin(),
                pairVec[i].small.end());
+    updatePairIndexes(pairVec[i].small.back());
     i--;
   }
 

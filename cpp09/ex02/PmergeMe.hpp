@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:55:22 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/21 17:41:15 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/23 11:04:15 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ public:
   void insertPendIntoMain();
   void makePairs();
   void sortPairs();
+  void updatePairIndexes(int i);
   void createJacobsthalSequence();
   std::vector<int> sortVector(const std::vector<int> &input);
 
