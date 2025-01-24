@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:05:36 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/23 11:25:06 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/24 13:29:32 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,17 @@ void PmergeMe::formMainAndPendElements() {
   printSequence(vec);
   std::cout << "Main size: " << vec.size() << std::endl;
 }
+
 void PmergeMe::updatePairIndexes(int inserted) {
-  for (size_t j = 0; j < vec.size(); j += pairSize / 2) {
-    if (vec[j] == inserted) {
-      while (j < vec.size() - pairSize / 2) {
-        j += pairSize / 2;
-        for (size_t i = 0; i < pairVec.size(); ++i) {
-          if (pairVec[i].small.back() == vec[j]) {
-            pairVec[i].index++;
-          }
-        }
-      }
-      return;
+  for (size_t j = 0; j < pairVec.size(); ++j) {
+    if (!pairVec[j].inserted && pairVec[j].small.back() > inserted) {
+      pairVec[j].smallIndex--;
+    }
+    if (pairVec[j].large.back() > inserted) {
+      pairVec[j].largeIndex++;
+    }
+    if (pairVec[j].inserted && pairVec[j].small.back() > inserted) {
+      pairVec[j].smallIndex++;
     }
   }
 }
@@ -73,11 +72,13 @@ void PmergeMe::binaryInsertionSort() {
         left = mid + 1;
       }
     }
+    // fix to insert correct element, based on its pend index
     std::cout << "Inserting: ";
     printSequence(pairVec[i].small);
-    std::cout << "Index: " << pairVec[i].index << std::endl;
+    std::cout << "Index: " << pairVec[i].smallIndex << std::endl;
     vec.insert(vec.begin() + (left * pairSize / 2), pairVec[i].small.begin(),
                pairVec[i].small.end());
+    pairVec[i].inserted = true;
     updatePairIndexes(pairVec[i].small.back());
     i--;
   }
@@ -118,11 +119,13 @@ void PmergeMe::makePairs() {
   size_t i;
   for (i = 0; i + pairSize <= vec.size(); i += pairSize) {
     Pair pair;
+    pair.inserted = false;
     pair.small.insert(pair.small.end(), vec.begin() + i,
                       vec.begin() + i + pairSize / 2);
     pair.large.insert(pair.large.end(), vec.begin() + i + pairSize / 2,
                       vec.begin() + i + pairSize);
-    pair.index = i / pairSize;
+    pair.smallIndex = i / pairSize;
+    pair.largeIndex = pair.smallIndex + 1;
     pairVec.push_back(pair);
   }
   if (i <= vec.size() - pairSize / 2) {
@@ -142,9 +145,9 @@ void PmergeMe::sortPairs() {
       std::swap(pairVec[i].small, pairVec[i].large);
       // Sort the pair in the vector
       std::swap_ranges(
-          vec.begin() + pairVec[i].index * pairSize,
-          vec.begin() + pairVec[i].index * pairSize + (pairSize / 2),
-          vec.begin() + pairVec[i].index * pairSize + (pairSize / 2));
+          vec.begin() + pairVec[i].smallIndex * pairSize,
+          vec.begin() + pairVec[i].smallIndex * pairSize + (pairSize / 2),
+          vec.begin() + pairVec[i].smallIndex * pairSize + (pairSize / 2));
     }
   }
 }

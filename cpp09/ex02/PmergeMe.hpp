@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:55:22 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/23 11:04:15 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/24 13:24:33 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 struct Pair {
   std::vector<int> small;
   std::vector<int> large;
-  size_t index;
+  size_t smallIndex;
+  size_t largeIndex;
+  bool inserted;
 };
 
 class PmergeMe {
@@ -40,7 +42,7 @@ public:
   void insertPendIntoMain();
   void makePairs();
   void sortPairs();
-  void updatePairIndexes(int i);
+  void updatePairIndexes(int inserted);
   void createJacobsthalSequence();
   std::vector<int> sortVector(const std::vector<int> &input);
 
