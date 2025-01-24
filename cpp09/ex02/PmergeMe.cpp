@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:05:36 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/24 13:29:32 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:07:40 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,14 @@ PmergeMe::~PmergeMe() {}
 void PmergeMe::formMainAndPendElements() {
   vec.clear();
   vec.insert(vec.end(), pairVec[0].small.begin(), pairVec[0].small.end());
+  pairVec[0].inserted = true;
+  pairVec[0].smallIndex = 0;
+  pairVec[0].largeIndex = 1;
   vec.insert(vec.end(), pairVec[0].large.begin(), pairVec[0].large.end());
   for (size_t i = 1; i < pairVec.size(); i++) {
     vec.insert(vec.end(), pairVec[i].large.begin(), pairVec[i].large.end());
+    pairVec[i].largeIndex = i + 1;
+    pairVec[i].smallIndex = i - 1;
   }
   std::cout << "Main elements: ";
   printSequence(vec);
@@ -57,55 +62,58 @@ void PmergeMe::binaryInsertionSort() {
   if (i >= pairVec.size()) {
     i = pairVec.size() - 1;
   }
+  std::cout << "jacobStahl: " << jacobStahl << std::endl;
   std::cout << "i: " << i << std::endl;
   
   // this loop is inserting in the wrong place !!!
   // we need to update the pair indexes after an insertion is made
+  i = pairVec.size() - 1;
   while (i > 0) {
-    size_t left = 0;
-    size_t right = i;
-    while (left < right) {
-      size_t mid = left + (right - left) / 2;
-      if (pairVec[i].small.back() < vec[mid * pairSize / 2]) {
-        right = mid;
-      } else {
-        left = mid + 1;
+    size_t right = vec.size() - 1;
+    while (right > 0) {
+      if (pairVec[i].small.back() > vec[right]) {
+        right++;
+        break;
       }
+      right -= pairSize / 2;
     }
     // fix to insert correct element, based on its pend index
     std::cout << "Inserting: ";
     printSequence(pairVec[i].small);
-    std::cout << "Index: " << pairVec[i].smallIndex << std::endl;
-    vec.insert(vec.begin() + (left * pairSize / 2), pairVec[i].small.begin(),
+    std::cout << "In main index: " << right << std::endl;
+    // std::cout << "Index: " << pairVec[i].smallIndex << std::endl;
+    vec.insert(vec.begin() + right, pairVec[i].small.begin(),
                pairVec[i].small.end());
+    std::cout << "Vec after insertion: ";
+    printSequence(vec);
+    std::cout << std::endl;
     pairVec[i].inserted = true;
     updatePairIndexes(pairVec[i].small.back());
     i--;
   }
 
-  std::cout << "Vec before oddElement insertion: ";
-  printSequence(vec);
   if (!oddElement.empty()) {
-    size_t left = 0;
-    size_t right = vec.size();
-    std::cout << "right: " << right << std::endl;
-    while (left < right) {
-      size_t mid = left + (right - left) / 2;
-      if (oddElement.back() < vec[mid]) {
-        std::cout << oddElement.back() << " < " << vec[mid] << std::endl;
-        std::cout << "Right: " << right << " Left: " << left << std::endl;
-        right = mid;
-      } else {
-        std::cout << "mid: " << mid << std::endl;
-        std::cout << "left = mid + 1" << std::endl;
-        left = mid + 1;
+    std::cout << "Vec before oddElement insertion: ";
+    printSequence(vec);
+    size_t j = pairSize / 2 - 1;
+    while (j < vec.size()) {
+      std::cout << "Inspecting main index: " << j << std::endl;
+      if (vec[j] > oddElement.back()) {
+        j = 0;
+        break;
       }
+      if ((vec[j] < oddElement.back())
+        && (j + pairSize / 2 > vec.size() - 1
+        || vec[j + pairSize / 2] > oddElement.back())) {
+          break;
+      }
+      j += pairSize / 2;
     }
-    // debugging
-    std::cout << "Inserting odd element after " << vec[left] << std::endl;
     
-    vec.insert(vec.begin() + left, oddElement.begin(),
+    vec.insert(vec.begin() + j + 1, oddElement.begin(),
                oddElement.end());
+  std::cout << "Vec after oddElement insertion: ";
+  printSequence(vec);
   }
   for (size_t i = 0; i < leftovers.size(); i++) {
     vec.push_back(leftovers[i]);
@@ -255,7 +263,7 @@ std::vector<int> PmergeMe::sortVector(const std::vector<int> &input) {
   recursionLevel = 1;
   pairSize = 2;
   keepRecursing = true;
-  jacobStahlIndex = 3;
+  jacobStahlIndex = 2;
   createJacobsthalSequence();
   fordJohnsonAlgorithm();
   return vec;
