@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:05:36 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/24 16:07:40 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:24:17 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ void PmergeMe::binaryInsertionSort() {
   std::cout << "jacobStahl: " << jacobStahl << std::endl;
   std::cout << "i: " << i << std::endl;
   
-  // this loop is inserting in the wrong place !!!
-  // we need to update the pair indexes after an insertion is made
   i = pairVec.size() - 1;
   while (i > 0) {
     size_t right = vec.size() - 1;
@@ -240,7 +238,7 @@ void PmergeMe::fordJohnsonAlgorithm() {
   binaryInsertionSort();
   pairSize /= 2;
   recursionLevel--;
-  jacobStahlIndex++;
+  jacobStahlIndex = 3;
   if (jacobStahlIndex >= jacobsthalSequence.size()) {
     throw std::out_of_range("Jacobsthal index out of range");
   }
