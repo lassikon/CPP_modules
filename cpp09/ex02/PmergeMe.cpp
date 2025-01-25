@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:05:36 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/24 21:24:05 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/25 12:31:16 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,29 +67,41 @@ void PmergeMe::binaryInsertionSort() {
   }
   formMainSequence();
 
-  while (pairVec.size() > 0) {
+  while (!pairVec.empty()) {
     int i = getNextJacobsthal();
     std::cout << "Jacobsthal: " << i << std::endl;
+
     while (i >= 0) {
-      int right = vec.size() - 1;
-      while (right >= 0) {
-        if (pairVec[i].small.back() > vec[right]) {
-          right++;
-          break;
+      int rightBoundary = pairVec[i].indexInMainSequence;
+
+      // Perform binary search for insertion point
+      int left = 0, right = rightBoundary;
+      while (left < right) {
+        int mid = left + (right - left) / 2;
+        if (mid % elementSize != 0) {
+          mid += elementSize / 2;
         }
-        right -= elementSize;
+        if (pairVec[i].small.back() > vec[mid]) {
+          left = mid + elementSize;
+        } else {
+          right = mid;
+        }
       }
-      if (right < 0) {
-        right = 0;
-      }
+
+      // Calculate the actual index for insertion
+      int insertIndex = left; // * elementSize;
       std::cout << "Inserting: ";
       printSequence(pairVec[i].small);
-      std::cout << "In main index: " << right << std::endl;
-      vec.insert(vec.begin() + right, pairVec[i].small.begin(),
-                 pairVec[i].small.end());
+      std::cout << "At main index: " << insertIndex << std::endl;
+
+      // Insert the sequence into vec at the determined position
+      vec.insert(vec.begin() + insertIndex, pairVec[i].small.begin(), pairVec[i].small.end());
+
       std::cout << "Vec after insertion: ";
       printSequence(vec);
       std::cout << std::endl;
+
+      // Update pair indexes and remove the inserted pair
       updatePairIndexes(pairVec[i].small.back());
       pairVec.erase(pairVec.begin() + i);
       i--;
