@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:05:36 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/29 13:22:38 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:24:58 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,10 @@ void PmergeMe::binaryInsertionSort() {
 
     while (i >= 0) {
       int rightBoundary = pairVec[i].indexInMainSequence / elementSize;
-      std::cout << "Right boundary: " << rightBoundary << std::endl;
       // Perform binary search for insertion point
       int left = 0, right = rightBoundary;
       while (left < right) {
         int mid = left + (right - left) / 2;
-        std::cout << "Inspecting main index: "
-                  << mid * elementSize + elementSize - 1 << std::endl;
         if (pairVec[i].small.back() >
             vec[mid * elementSize + elementSize - 1]) {
           left = mid + 1;
@@ -112,22 +109,23 @@ void PmergeMe::binaryInsertionSort() {
   if (!oddElement.empty()) {
     std::cout << "Vec before oddElement insertion: ";
     printSequence(vec);
-    size_t j = elementSize - 1;
-    while (j < vec.size()) {
-      std::cout << "Inspecting main index: " << j << std::endl;
-      if (vec[j] > oddElement.back()) {
-        j = 0;
-        break;
+    int rightBoundary = (vec.size() - 1) / elementSize;
+    // Perform binary search for insertion point
+    int left = 0, right = rightBoundary;
+    while (left < right) {
+      int mid = left + (right - left) / 2;
+      if (oddElement.back() > vec[mid * elementSize + elementSize - 1]) {
+        left = mid + 1;
+      } else {
+        right = mid;
       }
-      if ((vec[j] < oddElement.back()) &&
-          (j + elementSize > vec.size() - 1 ||
-           vec[j + elementSize] > oddElement.back())) {
-        break;
-      }
-      j += elementSize;
     }
 
-    vec.insert(vec.begin() + j + 1, oddElement.begin(), oddElement.end());
+    int insertIndex = left * elementSize;
+    std::cout << "Inserting: ";
+    printSequence(oddElement);
+    std::cout << "At main index: " << insertIndex << std::endl;
+    vec.insert(vec.begin() + insertIndex, oddElement.begin(), oddElement.end());
     std::cout << "Vec after oddElement insertion: ";
     printSequence(vec);
   }
