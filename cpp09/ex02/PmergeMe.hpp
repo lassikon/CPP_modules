@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:55:22 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/24 21:26:44 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:31:56 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,9 @@ public:
   PmergeMe &operator=(const PmergeMe &other) = delete;
   ~PmergeMe();
 
-  void printPairs(); // debugging
-
   void fordJohnsonAlgorithm();
   void binaryInsertionSort();
   void formMainSequence();
-  void insertPendIntoMain();
   void makePairs();
   void sortPairs();
   void updatePairIndexes(int inserted);

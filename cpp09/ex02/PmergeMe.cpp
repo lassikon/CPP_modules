@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:05:36 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/29 15:24:58 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:35:59 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ PmergeMe::PmergeMe() {}
 
 PmergeMe::~PmergeMe() {}
 
+// Take the smallest pair + the larger elements from every other pair
 void PmergeMe::formMainSequence() {
-  std::cout << "Forming main sequence" << std::endl;
   vec.clear();
   vec.insert(vec.end(), pairVec[0].small.begin(), pairVec[0].small.end());
   size_t index = 2 * elementSize - 1;
@@ -32,12 +32,7 @@ void PmergeMe::formMainSequence() {
     vec.insert(vec.end(), pairVec[i].large.begin(), pairVec[i].large.end());
     index += elementSize;
     pairVec[i].indexInMainSequence = index;
-    std::cout << "Index in main sequence: " << pairVec[i].indexInMainSequence
-              << std::endl;
   }
-  std::cout << "Main elements: ";
-  printSequence(vec);
-  std::cout << "Main size: " << vec.size() << std::endl;
 }
 
 void PmergeMe::updatePairIndexes(int inserted) {
@@ -61,16 +56,13 @@ int PmergeMe::getNextJacobsthal() {
 
 void PmergeMe::binaryInsertionSort() {
   if (elementSize * 2 > vec.size()) {
-    std::cout << "Skipping binaryInsertionSort at recursion level: "
-              << recursionLevel << std::endl;
     return;
   }
+
   formMainSequence();
 
   while (!pairVec.empty()) {
     int i = getNextJacobsthal();
-    std::cout << "Jacobsthal: " << i << std::endl;
-
     while (i >= 0) {
       int rightBoundary = pairVec[i].indexInMainSequence / elementSize;
       // Perform binary search for insertion point
@@ -85,19 +77,10 @@ void PmergeMe::binaryInsertionSort() {
         }
       }
 
-      // Calculate the actual index for insertion
+      // Calculate the actual index for insertion, and insert the sequence
       int insertIndex = left * elementSize;
-      std::cout << "Inserting: ";
-      printSequence(pairVec[i].small);
-      std::cout << "At main index: " << insertIndex << std::endl;
-
-      // Insert the sequence into vec at the determined position
       vec.insert(vec.begin() + insertIndex, pairVec[i].small.begin(),
                  pairVec[i].small.end());
-
-      std::cout << "Vec after insertion: ";
-      printSequence(vec);
-      std::cout << std::endl;
 
       // Update pair indexes and remove the inserted pair
       updatePairIndexes(pairVec[i].small.back());
@@ -106,11 +89,9 @@ void PmergeMe::binaryInsertionSort() {
     }
   }
 
+  // Insert the odd element if one exists
   if (!oddElement.empty()) {
-    std::cout << "Vec before oddElement insertion: ";
-    printSequence(vec);
     int rightBoundary = (vec.size() - 1) / elementSize;
-    // Perform binary search for insertion point
     int left = 0, right = rightBoundary;
     while (left < right) {
       int mid = left + (right - left) / 2;
@@ -120,15 +101,11 @@ void PmergeMe::binaryInsertionSort() {
         right = mid;
       }
     }
-
     int insertIndex = left * elementSize;
-    std::cout << "Inserting: ";
-    printSequence(oddElement);
-    std::cout << "At main index: " << insertIndex << std::endl;
     vec.insert(vec.begin() + insertIndex, oddElement.begin(), oddElement.end());
-    std::cout << "Vec after oddElement insertion: ";
-    printSequence(vec);
   }
+
+  // Add the leftover numbers to the end of the vector
   for (size_t i = 0; i < leftovers.size(); i++) {
     vec.push_back(leftovers[i]);
   }
@@ -158,9 +135,7 @@ void PmergeMe::makePairs() {
 }
 
 void PmergeMe::sortPairs() {
-  std::cout << "Sorting pairs" << std::endl;
   for (size_t i = 0; i < pairVec.size(); i++) {
-    std::cout << "Sorting pair " << i << std::endl;
     if (!pairVec[i].small.empty() && !pairVec[i].large.empty() &&
         pairVec[i].small.back() > pairVec[i].large.back()) {
       std::swap(pairVec[i].small, pairVec[i].large);
@@ -172,83 +147,16 @@ void PmergeMe::sortPairs() {
   }
 }
 
-void PmergeMe::printPairs() {
-  std::cout << "Recursion level: " << recursionLevel << std::endl;
-  std::cout << "Element size: " << elementSize << std::endl;
-  // Calculate dynamic column widths based on the content
-  size_t maxSmallWidth = 5; // Minimum width for "empty" label
-  size_t maxLargeWidth = 5; // Minimum width for "empty" label
-
-  for (const auto &pair : pairVec) {
-    std::ostringstream ossSmall, ossLarge;
-    printSequence(pair.small, ossSmall);
-    printSequence(pair.large, ossLarge);
-
-    maxSmallWidth = std::max(maxSmallWidth, ossSmall.str().length());
-    maxLargeWidth = std::max(maxLargeWidth, ossLarge.str().length());
-  }
-
-  // Print header
-  std::cout << std::left << std::setw(10) << "Pair" << std::setw(maxSmallWidth)
-            << "Small"
-            << " | " << std::setw(maxLargeWidth) << "Large" << std::endl;
-  std::cout << std::string(10 + maxSmallWidth + 3 + maxLargeWidth, '-')
-            << std::endl;
-
-  // Print each pair
-  for (size_t i = 0; i < pairVec.size(); i++) {
-    std::cout << std::left << std::setw(10) << ("Pair " + std::to_string(i));
-
-    std::ostringstream ossSmall, ossLarge;
-    if (pairVec[i].small.empty()) {
-      ossSmall << "empty";
-    } else {
-      printSequence(pairVec[i].small, ossSmall);
-    }
-
-    if (pairVec[i].large.empty()) {
-      ossLarge << "empty";
-    } else {
-      printSequence(pairVec[i].large, ossLarge);
-    }
-
-    std::cout << std::setw(maxSmallWidth) << ossSmall.str() << " | "
-              << std::setw(maxLargeWidth) << ossLarge.str() << std::endl;
-  }
-
-  // Print additional information
-  std::cout << "\nOdd element: ";
-  if (oddElement.empty()) {
-    std::cout << "empty\n";
-  } else {
-    printSequence(oddElement);
-  }
-
-  std::cout << "Leftovers: ";
-  if (leftovers.empty()) {
-    std::cout << "empty\n";
-  } else {
-    printSequence(leftovers);
-  }
-
-  std::cout << "Vector: ";
-  printSequence(vec);
-  std::cout << std::endl;
-}
-
 void PmergeMe::fordJohnsonAlgorithm() {
   if (keepRecursing && elementSize * 2 <= vec.size()) {
     makePairs();
     sortPairs();
-    printPairs(); // debugging
     elementSize *= 2;
     recursionLevel++;
     fordJohnsonAlgorithm(); // Recurse
   }
   keepRecursing = false;
   makePairs();
-  // sortPairs();
-  printPairs(); // debugging
   binaryInsertionSort();
   elementSize /= 2;
   recursionLevel--;
@@ -266,8 +174,6 @@ void PmergeMe::createJacobsthalSequence() {
     jacobsthalSequence.push_back(jacobsthalSequence[i - 1] +
                                  2 * jacobsthalSequence[i - 2]);
   }
-  std::cout << "Jacobsthal sequence: ";
-  printSequence(jacobsthalSequence);
 }
 
 std::vector<int> PmergeMe::sortVector(const std::vector<int> &input) {
