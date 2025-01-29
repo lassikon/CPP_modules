@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:55:22 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/29 15:31:56 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/29 21:19:24 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,25 @@ public:
 
   std::deque<int> sortDeque(const std::deque<int> &input);
 
-  // template <typename Container> void printSequence(const Container &sequence)
-  // {
-  //   for (size_t i = 0; i < sequence.size(); i++) {
-  //     std::cout << sequence[i] << (i < sequence.size() - 1 ? " " : "\n");
-  //   }
-  // }
-
-  template <typename Container>
-  void printSequence(const Container &sequence, std::ostream &os = std::cout) {
+  template <typename Container> void printSequence(const Container &sequence) {
     for (size_t i = 0; i < sequence.size(); i++) {
-      os << sequence[i] << (i < sequence.size() - 1 ? " " : "");
-    }
-    if (&os == &std::cout) { // Only print a newline if outputting to std::cout
-      os << "\n";
+      std::cout << sequence[i] << (i < sequence.size() - 1 ? " " : "\n");
     }
   }
 
 private:
   std::vector<int> vec;
   std::vector<Pair> pairVec;
-  std::vector<int> oddElement;
-  std::vector<int> leftovers;
+  std::vector<int> oddElementVec;
+  std::vector<int> leftoversVec;
+
+  std::deque<int> deq;
+  std::deque<Pair> pairDeq;
+  std::deque<int> oddElementDeq;
+  std::deque<int> leftoversDeq;
 
   std::vector<size_t> jacobsthalSequence;
   size_t jacobsthalIndex;
-  size_t recursionLevel;
   size_t elementSize;
   bool keepRecursing;
 };

@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 12:05:36 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/29 15:35:59 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/29 21:11:33 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,24 @@
 #include "PmergeMe.hpp"
 #include <algorithm>
 
-PmergeMe::PmergeMe() {}
+PmergeMe::PmergeMe() {
+  createJacobsthalSequence();
+  elementSize = 1;
+  jacobsthalIndex = 3;
+  keepRecursing = true;
+}
 
 PmergeMe::~PmergeMe() {}
+
+void PmergeMe::createJacobsthalSequence() {
+  size_t sequenceSize = 20;
+  jacobsthalSequence.push_back(0);
+  jacobsthalSequence.push_back(1);
+  for (size_t i = 2; i < sequenceSize; i++) {
+    jacobsthalSequence.push_back(jacobsthalSequence[i - 1] +
+                                 2 * jacobsthalSequence[i - 2]);
+  }
+}
 
 // Take the smallest pair + the larger elements from every other pair
 void PmergeMe::formMainSequence() {
@@ -90,31 +105,32 @@ void PmergeMe::binaryInsertionSort() {
   }
 
   // Insert the odd element if one exists
-  if (!oddElement.empty()) {
+  if (!oddElementVec.empty()) {
     int rightBoundary = (vec.size() - 1) / elementSize;
     int left = 0, right = rightBoundary;
     while (left < right) {
       int mid = left + (right - left) / 2;
-      if (oddElement.back() > vec[mid * elementSize + elementSize - 1]) {
+      if (oddElementVec.back() > vec[mid * elementSize + elementSize - 1]) {
         left = mid + 1;
       } else {
         right = mid;
       }
     }
     int insertIndex = left * elementSize;
-    vec.insert(vec.begin() + insertIndex, oddElement.begin(), oddElement.end());
+    vec.insert(vec.begin() + insertIndex, oddElementVec.begin(),
+               oddElementVec.end());
   }
 
   // Add the leftover numbers to the end of the vector
-  for (size_t i = 0; i < leftovers.size(); i++) {
-    vec.push_back(leftovers[i]);
+  for (size_t i = 0; i < leftoversVec.size(); i++) {
+    vec.push_back(leftoversVec[i]);
   }
 }
 
 void PmergeMe::makePairs() {
   pairVec.clear();
-  oddElement.clear();
-  leftovers.clear();
+  oddElementVec.clear();
+  leftoversVec.clear();
   size_t i;
   for (i = 0; i + elementSize * 2 <= vec.size(); i += elementSize * 2) {
     Pair pair;
@@ -125,12 +141,12 @@ void PmergeMe::makePairs() {
     pairVec.push_back(pair);
   }
   if (i <= vec.size() - elementSize) {
-    oddElement.insert(oddElement.end(), vec.begin() + i,
-                      vec.begin() + i + elementSize);
+    oddElementVec.insert(oddElementVec.end(), vec.begin() + i,
+                         vec.begin() + i + elementSize);
     i += elementSize;
   }
   if (i < vec.size()) {
-    leftovers.insert(leftovers.end(), vec.begin() + i, vec.end());
+    leftoversVec.insert(leftoversVec.end(), vec.begin() + i, vec.end());
   }
 }
 
@@ -152,37 +168,20 @@ void PmergeMe::fordJohnsonAlgorithm() {
     makePairs();
     sortPairs();
     elementSize *= 2;
-    recursionLevel++;
     fordJohnsonAlgorithm(); // Recurse
   }
   keepRecursing = false;
   makePairs();
   binaryInsertionSort();
   elementSize /= 2;
-  recursionLevel--;
   jacobsthalIndex = 3;
   if (jacobsthalIndex >= jacobsthalSequence.size()) {
     throw std::out_of_range("Jacobsthal index out of range");
   }
 }
 
-void PmergeMe::createJacobsthalSequence() {
-  size_t sequenceSize = 20;
-  jacobsthalSequence.push_back(0);
-  jacobsthalSequence.push_back(1);
-  for (size_t i = 2; i < sequenceSize; i++) {
-    jacobsthalSequence.push_back(jacobsthalSequence[i - 1] +
-                                 2 * jacobsthalSequence[i - 2]);
-  }
-}
-
 std::vector<int> PmergeMe::sortVector(const std::vector<int> &input) {
   vec = input;
-  recursionLevel = 1;
-  elementSize = 1;
-  keepRecursing = true;
-  jacobsthalIndex = 2;
-  createJacobsthalSequence();
   fordJohnsonAlgorithm();
   return vec;
 }
