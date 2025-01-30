@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:08:31 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/16 17:42:32 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:44:59 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <sstream> // std::istringstream
 #include <stack>
 #include <stdexcept>
+#include <limits>
 
 RPN::RPN(const std::string &input) : input(input) {}
 
@@ -27,7 +28,25 @@ bool RPN::isOperator(char token) const {
 
 bool RPN::isNumber(char token) const { return std::isdigit(token); }
 
-int RPN::calculate(int a, int b, char op) const {
+bool RPN::willOverflow(int a, int b, char op) {
+  switch (op) {
+  case '*':
+    return (b != 0 && a > std::numeric_limits<int>::max() / b);
+  case '+':
+    return (a > std::numeric_limits<int>::max() - b);
+  case '-':
+    return (a < std::numeric_limits<int>::min() + b);
+  case '/':
+    return (b == 0);
+  default:
+    return false;
+  }
+}
+
+int RPN::calculate(int a, int b, char op) {
+  if (willOverflow(a, b, op)) {
+    throw std::overflow_error("Arithmetic overflow");
+  }
   switch (op) {
   case '+':
     return a + b;

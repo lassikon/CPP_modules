@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:09:52 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/16 16:46:39 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/30 12:41:45 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ float BitcoinExchange::getExchangeRate(const std::string &date) const {
   auto it = exchangeRates.lower_bound(date);
   if (it == exchangeRates.end() || it->first != date) {
     if (it == exchangeRates.begin()) {
-      throw std::runtime_error("Error: no valid date available for lookup.");
+      throw std::runtime_error("no valid date available for lookup.");
     }
     --it; // Use closest earlier date
   }
@@ -91,6 +91,11 @@ void BitcoinExchange::evaluateInputFile(
       continue;
     }
 
+    if (!isValidDate(date)) {
+      std::cerr << "Error: invalid date: " << date << std::endl;
+      continue;
+    }
+
     try {
       float value = std::stof(valueStr);
       if (value < 0) {
@@ -109,4 +114,27 @@ void BitcoinExchange::evaluateInputFile(
       std::cerr << "Error: " << e.what() << std::endl;
     }
   }
+}
+
+bool BitcoinExchange::isValidDate(const std::string &date) const {
+  std::regex pattern(R"((\d{4})-(\d{2})-(\d{2}))");
+  std::smatch match;
+  if (!std::regex_match(date, match, pattern)) {
+    return false;
+  } else {
+    int year = std::stoi(match[1].str());
+    int month = std::stoi(match[2].str());
+    int day = std::stoi(match[3].str());
+    int days[] = {31, (isLeapYear(year) ? 29 : 28),
+      31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    if (month < 1 || month > 12 || day < 1 || day > days[month - 1]) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+}
+
+bool BitcoinExchange::isLeapYear(int year) const {
+  return (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
 }
