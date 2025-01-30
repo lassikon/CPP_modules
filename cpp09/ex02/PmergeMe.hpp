@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/17 11:55:22 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/29 21:53:54 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/01/30 15:56:52 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 #include <cstddef>
 #include <deque>
-#include <iomanip> // for debugging with printPairs()
 #include <iostream>
-#include <ostream> // for printSequence()
 #include <vector>
 
 template <typename Container> class PmergeMe {
 public:
   PmergeMe();
   ~PmergeMe();
+  PmergeMe(const PmergeMe &other) = delete;
+  PmergeMe &operator=(const PmergeMe &other) = delete;
 
   Container sort(const Container &input);
 
@@ -156,9 +156,15 @@ template <typename Container> void PmergeMe<Container>::binaryInsertionSort() {
     seq.insert(seq.begin() + insertIndex, oddElement.begin(), oddElement.end());
   }
 
-  // Add the leftover numbers to the end of the seqtor
-  for (size_t i = 0; i < leftovers.size(); ++i) {
-    seq.push_back(leftovers[i]);
+  // add the leftover numbers to the end of the sequence
+  if (!leftovers.empty()) {
+    for (size_t i = 0; i < leftovers.size(); ++i) {
+      seq.push_back(leftovers[i]);
+    }
+  }
+
+  if (elementSize == 1 && seq.back() < seq[seq.size() - 2]) {
+    std::swap(seq.back(), seq[seq.size() - 2]);
   }
 }
 
