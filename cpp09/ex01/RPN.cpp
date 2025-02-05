@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 17:08:31 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/30 12:44:59 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/02/05 16:39:55 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,33 @@ bool RPN::isNumber(char token) const { return std::isdigit(token); }
 
 bool RPN::willOverflow(int a, int b, char op) {
   switch (op) {
-  case '*':
-    return (b != 0 && a > std::numeric_limits<int>::max() / b);
-  case '+':
-    return (a > std::numeric_limits<int>::max() - b);
-  case '-':
-    return (a < std::numeric_limits<int>::min() + b);
-  case '/':
-    return (b == 0);
-  default:
-    return false;
+    case '*':
+      if (b > 0)
+        return (a > std::numeric_limits<int>::max() / b || a < std::numeric_limits<int>::min() / b);
+      else if (b < 0)
+        return (a < std::numeric_limits<int>::max() / b || a > std::numeric_limits<int>::min() / b);
+      return false; // Multiplication by zero is always safe
+
+    case '+':
+      if (b > 0)
+        return (a > std::numeric_limits<int>::max() - b);
+      else
+        return (a < std::numeric_limits<int>::min() - b);
+
+    case '-':
+      if (b > 0)
+        return (a < std::numeric_limits<int>::min() + b);
+      else
+        return (a > std::numeric_limits<int>::max() + b);
+
+    case '/':
+      return (b == 0 || (a == std::numeric_limits<int>::min() && b == -1)); // Prevent division overflow (INT_MIN / -1)
+
+    default:
+      return false;
   }
 }
+
 
 int RPN::calculate(int a, int b, char op) {
   if (willOverflow(a, b, op)) {
