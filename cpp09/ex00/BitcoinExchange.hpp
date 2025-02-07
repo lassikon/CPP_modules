@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 12:32:20 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/30 12:38:33 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:00:11 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@
 
 class BitcoinExchange {
 public:
-  BitcoinExchange();
+  BitcoinExchange() = delete;
   BitcoinExchange(const std::string &dbFilePath);
+  BitcoinExchange(const BitcoinExchange &other) = delete;
+  BitcoinExchange &operator=(const BitcoinExchange &other) = delete;
   ~BitcoinExchange();
 
   void evaluateInputFile(const std::string &inputFilePath) const;
@@ -31,4 +33,5 @@ private:
   float getExchangeRate(const std::string &date) const;
   bool isValidDate(const std::string &date) const;
   bool isLeapYear(int year) const;
+  bool isValidFloat(std::string &s) const;
 };

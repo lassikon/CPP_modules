@@ -6,7 +6,7 @@
 /*   By: lkonttin <lkonttin@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:09:52 by lkonttin          #+#    #+#             */
-/*   Updated: 2025/01/30 12:41:45 by lkonttin         ###   ########.fr       */
+/*   Updated: 2025/02/07 15:00:11 by lkonttin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
-
-BitcoinExchange::BitcoinExchange() {}
 
 BitcoinExchange::~BitcoinExchange() {}
 
@@ -46,8 +44,12 @@ BitcoinExchange::BitcoinExchange(const std::string &dbFilePath) {
     std::string rateStr =
         line.substr(commaPos + 1); // Extract the rate as a string
     try {
-      float rate = std::stof(rateStr);
-      exchangeRates[date] = rate;
+      if (isValidFloat(rateStr)) {
+        float rate = std::stof(rateStr);
+        exchangeRates[date] = rate;
+      } else {
+        std::cerr << "Error: invalid rate in line: " << line << std::endl;
+      }
     } catch (const std::exception &e) {
       std::cerr << "Error: invalid rate in line: " << line << std::endl;
     }
@@ -97,6 +99,10 @@ void BitcoinExchange::evaluateInputFile(
     }
 
     try {
+      if (!isValidFloat(valueStr)) {
+        std::cerr << "Error: invalid value." << std::endl;
+        continue;
+      }
       float value = std::stof(valueStr);
       if (value < 0) {
         std::cerr << "Error: not a positive number." << std::endl;
@@ -137,4 +143,17 @@ bool BitcoinExchange::isValidDate(const std::string &date) const {
 
 bool BitcoinExchange::isLeapYear(int year) const {
   return (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+}
+
+bool BitcoinExchange::isValidFloat(std::string &s) const {
+    if (s.empty() || (s.find_first_not_of("0123456789.-") != std::string::npos)) {
+        return false;
+    }
+    try {
+        size_t pos;
+        std::stof(s, &pos);
+        return pos == s.size();  // Ensure the entire string was consumed
+    } catch (...) {
+        return false;
+    }
 }
